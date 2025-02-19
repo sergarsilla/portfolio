@@ -3,36 +3,38 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
-    title: "Proyecto 1",
+    title: "AI Image Generator App",
     description:
-      "Una aplicación web fullstack con funcionalidades de autenticación, base de datos y API REST.",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
-    githubUrl: "https://github.com/tu-usuario/proyecto-1",
-    liveUrl: "https://proyecto-1.com",
+      "Aplicación móvil para crear imágenes con IA. Desarrollada con tecnologías modernas y publicada en Google Play Store.",
+    technologies: ["Android", "Java", "AI APIs"],
+    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.aimagegenerator",
   },
   {
-    title: "Proyecto 2",
+    title: "Word Games App",
     description:
-      "Aplicación móvil multiplataforma para gestión de tareas y productividad.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-    technologies: ["React Native", "Firebase", "TypeScript"],
-    githubUrl: "https://github.com/tu-usuario/proyecto-2",
+      "Aplicación móvil que recopila juegos de palabras. Desarrollada para Android y publicada en Google Play Store.",
+    technologies: ["Android", "Java", "SQLite"],
+    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.wordgames",
   },
   {
-    title: "Proyecto 3",
+    title: "Task Manager App",
     description:
-      "Dashboard interactivo para visualización de datos en tiempo real.",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-    technologies: ["Vue.js", "D3.js", "Python", "FastAPI"],
-    githubUrl: "https://github.com/tu-usuario/proyecto-3",
-    liveUrl: "https://proyecto-3.com",
+      "Aplicación móvil para gestionar tareas diarias. Desarrollada con enfoque en la productividad y experiencia de usuario.",
+    technologies: ["Android", "Java", "Room DB"],
+    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.taskmaster",
+  },
+  {
+    title: "Weather App",
+    description:
+      "Aplicación web para visualizar el clima en cualquier ciudad utilizando React y Firebase.",
+    technologies: ["React", "Firebase", "Weather API"],
+    liveUrl: "https://weather-app-d654f.web.app",
   },
 ];
 
 const ProjectGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {projects.map((project, index) => (
         <ProjectCard key={project.title} {...project} index={index} />
       ))}

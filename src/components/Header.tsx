@@ -13,11 +13,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center mb-4 sm:mb-0">
           <Code className="w-8 h-8 text-accent mr-2" />
-          <h1 className="text-2xl font-semibold text-primary">Tu Nombre</h1>
+          <h1 className="text-2xl font-semibold text-primary">Sergio García Mansilla</h1>
         </div>
         <div className="flex items-center space-x-4">
           <a
-            href="https://github.com/tu-usuario"
+            href="https://github.com/sergiorilla"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
@@ -25,7 +25,7 @@ const Header = () => {
             <Github className="w-6 h-6 text-primary" />
           </a>
           <a
-            href="https://linkedin.com/in/tu-usuario"
+            href="https://linkedin.com/in/sergiorilla"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"

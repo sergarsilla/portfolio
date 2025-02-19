@@ -16,12 +16,11 @@ const Index = () => {
             className="text-center"
           >
             <h1 className="text-4xl font-bold text-primary mb-4">
-              Desarrollador de Software
+              Computer Engineering Student
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Especializado en crear soluciones tecnológicas innovadoras y
-              escalables. Apasionado por el desarrollo de software y las nuevas
-              tecnologías.
+              Full Stack Developer especializado en el desarrollo de aplicaciones móviles y web.
+              Estudiante de Ingeniería Informática en la Universidad Politécnica Madrid.
             </p>
           </motion.div>
         </div>
