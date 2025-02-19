@@ -12,6 +12,9 @@ const Index = () => {
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     setIsDark(prefersDark);
+    if (prefersDark) {
+      document.documentElement.classList.add("dark");
+    }
   }, []);
 
   const toggleTheme = () => {
@@ -20,7 +23,7 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-200 ${isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+    <div className="min-h-screen bg-background transition-colors duration-200">
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
       <main>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,10 +33,10 @@ const Index = () => {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h1 className="text-4xl font-bold text-primary mb-4">
+            <h1 className="text-4xl font-bold text-foreground mb-4">
               Computer Engineering Student
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Full Stack Developer especializado en el desarrollo de aplicaciones móviles y web.
               Estudiante de Ingeniería Informática en la Universidad Politécnica Madrid.
             </p>
@@ -48,7 +51,7 @@ const Index = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="py-12"
         >
-          <h2 className="text-2xl font-semibold text-primary text-center mb-8">
+          <h2 className="text-2xl font-semibold text-foreground text-center mb-8">
             Proyectos Destacados
           </h2>
           <ProjectGrid />

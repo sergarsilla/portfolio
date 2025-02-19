@@ -24,15 +24,15 @@ const ProjectCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 p-6"
+      className="bg-background dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200 dark:border-gray-700 p-6"
     >
-      <h3 className="text-xl font-semibold text-primary mb-3">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <h3 className="text-xl font-semibold text-foreground mb-3">{title}</h3>
+      <p className="text-muted-foreground mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {technologies.map((tech) => (
           <span
             key={tech}
-            className="px-3 py-1 bg-secondary rounded-full text-sm text-primary"
+            className="px-3 py-1 bg-secondary dark:bg-gray-700 rounded-full text-sm text-foreground"
           >
             {tech}
           </span>
@@ -44,7 +44,7 @@ const ProjectCard = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-primary hover:text-accent transition-colors duration-200"
+            className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200"
           >
             <Github className="w-5 h-5 mr-1" />
             <span>Código</span>
@@ -55,7 +55,7 @@ const ProjectCard = ({
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center text-primary hover:text-accent transition-colors duration-200"
+            className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200"
           >
             <Globe className="w-5 h-5 mr-1" />
             <span>Demo</span>

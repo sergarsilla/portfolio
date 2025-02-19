@@ -18,8 +18,8 @@ const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
     >
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center mb-4 sm:mb-0">
-          <Code className="w-8 h-8 text-accent mr-2" />
-          <h1 className="text-2xl font-semibold text-primary">Sergio García Mansilla</h1>
+          <Code className={`w-8 h-8 ${isDark ? 'text-accent-dark' : 'text-accent'} mr-2`} />
+          <h1 className="text-2xl font-semibold text-foreground">Sergio García Mansilla</h1>
         </div>
         <div className="flex items-center space-x-4">
           <a
@@ -28,7 +28,7 @@ const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
           >
-            <Github className="w-6 h-6 text-primary" />
+            <Github className="w-6 h-6 text-foreground" />
           </a>
           <a
             href="https://linkedin.com/in/sergiorilla"
@@ -36,7 +36,7 @@ const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
           >
-            <Linkedin className="w-6 h-6 text-primary" />
+            <Linkedin className="w-6 h-6 text-foreground" />
           </a>
           <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
         </div>
