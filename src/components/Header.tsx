@@ -1,8 +1,14 @@
 
 import { motion } from "framer-motion";
 import { Code, Github, Linkedin } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
-const Header = () => {
+interface HeaderProps {
+  isDark: boolean;
+  onToggleTheme: () => void;
+}
+
+const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
   return (
     <motion.header 
       initial={{ opacity: 0, y: -20 }}
@@ -32,6 +38,7 @@ const Header = () => {
           >
             <Linkedin className="w-6 h-6 text-primary" />
           </a>
+          <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
         </div>
       </div>
     </motion.header>
