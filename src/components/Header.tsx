@@ -23,7 +23,7 @@ const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
         </div>
         <div className="flex items-center space-x-4">
           <a
-            href="https://github.com/sergiorilla"
+            href="https://github.com/sergarsilla"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"
@@ -31,7 +31,7 @@ const Header = ({ isDark, onToggleTheme }: HeaderProps) => {
             <Github className="w-6 h-6 text-foreground" />
           </a>
           <a
-            href="https://linkedin.com/in/sergiorilla"
+            href="https://linkedin.com/in/sergarsilla"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full hover:bg-secondary transition-colors duration-200"

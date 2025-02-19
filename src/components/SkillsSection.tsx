@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 
 const skills = {
-  "Programming Languages": ["Java", "Python", "JavaScript", "TypeScript", "HTML", "CSS"],
-  "Frameworks & Libraries": ["React", "Spring Boot", "Node.js", "Express", "Android"],
+  "Programming Languages": ["Java", "Python", "Kotlin", "JavaScript", "TypeScript", "HTML", "CSS"],
+  "Frameworks & Libraries": ["React", "React-Native", "Spring Boot", "Node.js", "Express", "Android"],
   "Databases": ["MySQL", "MongoDB", "SQLite", "PostgreSQL"],
   "Tools & Others": ["Git", "Docker", "Linux", "Scrum", "REST APIs"]
 };

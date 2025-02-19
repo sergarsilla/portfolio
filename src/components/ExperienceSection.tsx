@@ -4,18 +4,11 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    company: "Accenture",
-    position: "Software Engineering Intern",
-    period: "September 2023 - Present",
-    description: "Development of web applications using modern technologies such as React, Java Spring Boot, and SQL. Participation in agile projects and team collaboration.",
-    technologies: ["React", "Java", "Spring Boot", "SQL", "Git"]
-  },
-  {
-    company: "Cáritas",
-    position: "Computer Science Teacher",
-    period: "October 2022 - June 2023",
-    description: "Teaching basic computer science and programming to people at risk of social exclusion.",
-    technologies: ["Office", "Basic Programming", "Digital Tools"]
+    company: "Ongawa",
+    position: "Software Engineering / Developer Intern",
+    period: "February 2025 - Present",
+    description: "",
+    technologies: ["Kotlin", "Jetpack Compose", "Room", "GitLab", "Clean Architecture", "Domain Driven Design", "SCRUM Methodology", "ADR"],
   }
 ];
 

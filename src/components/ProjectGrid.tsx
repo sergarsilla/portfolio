@@ -6,28 +6,34 @@ const projects = [
     title: "AI Image Generator App",
     description:
       "Mobile application for creating images with AI. Developed with modern technologies and published on Google Play Store.",
-    technologies: ["Android", "Java", "AI APIs"],
-    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.aimagegenerator",
+    technologies: ["Android - iOS", "React-Native", "AI APIs", "TypeScript", "Firebase"],
+    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.aiimagegenerator",
+  },
+  {
+    title: "",
+    description: "",
+    technologies: [],
+    liveUrl: "",
   },
   {
     title: "Word Games App",
     description:
       "Mobile application that compiles word games. Developed for Android and published on Google Play Store.",
-    technologies: ["Android", "Java", "SQLite"],
-    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.wordgames",
+    technologies: ["Android - iOS", "React-Native", "TypeScript", "Firebase"],
+    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.wordgame",
   },
   {
     title: "Task Manager App",
     description:
       "Mobile application for managing daily tasks. Developed with a focus on productivity and user experience.",
-    technologies: ["Android", "Java", "Room DB"],
-    githubUrl: "https://play.google.com/store/apps/details?id=com.sergiorilla.taskmaster",
+    technologies: ["Android - iOS", "React-Native", "JavaScript", "Firebase"],
+    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.taskmaster",
   },
   {
     title: "Weather App",
     description:
       "Web application to visualize weather in any city using React and Firebase.",
-    technologies: ["React", "Firebase", "Weather API"],
+    technologies: ["React", "Firebase", "JavaScript", "Weather API"],
     liveUrl: "https://weather-app-d654f.web.app",
   },
 ];
