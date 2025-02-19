@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 
 const skills = {
-  "Lenguajes de Programación": ["Java", "Python", "JavaScript", "TypeScript", "HTML", "CSS"],
-  "Frameworks y Librerías": ["React", "Spring Boot", "Node.js", "Express", "Android"],
-  "Bases de Datos": ["MySQL", "MongoDB", "SQLite", "PostgreSQL"],
-  "Herramientas y Otros": ["Git", "Docker", "Linux", "Scrum", "REST APIs"]
+  "Programming Languages": ["Java", "Python", "JavaScript", "TypeScript", "HTML", "CSS"],
+  "Frameworks & Libraries": ["React", "Spring Boot", "Node.js", "Express", "Android"],
+  "Databases": ["MySQL", "MongoDB", "SQLite", "PostgreSQL"],
+  "Tools & Others": ["Git", "Docker", "Linux", "Scrum", "REST APIs"]
 };
 
 const SkillsSection = () => {
@@ -20,7 +20,7 @@ const SkillsSection = () => {
         >
           <div className="flex items-center justify-center mb-8">
             <Code2 className="w-6 h-6 text-accent mr-2" />
-            <h2 className="text-2xl font-semibold text-primary">Tecnologías y Habilidades</h2>
+            <h2 className="text-2xl font-semibold text-primary">Technologies & Skills</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, skillList], index) => (

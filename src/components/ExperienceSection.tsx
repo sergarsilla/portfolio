@@ -6,16 +6,16 @@ const experiences = [
   {
     company: "Accenture",
     position: "Software Engineering Intern",
-    period: "Septiembre 2023 - Actualidad",
-    description: "Desarrollo de aplicaciones web utilizando tecnologías modernas como React, Java Spring Boot y SQL. Participación en proyectos ágiles y trabajo en equipo.",
+    period: "September 2023 - Present",
+    description: "Development of web applications using modern technologies such as React, Java Spring Boot, and SQL. Participation in agile projects and team collaboration.",
     technologies: ["React", "Java", "Spring Boot", "SQL", "Git"]
   },
   {
     company: "Cáritas",
-    position: "Profesor de Informática",
-    period: "Octubre 2022 - Junio 2023",
-    description: "Impartición de clases de informática básica y programación a personas en riesgo de exclusión social.",
-    technologies: ["Office", "Programación básica", "Herramientas digitales"]
+    position: "Computer Science Teacher",
+    period: "October 2022 - June 2023",
+    description: "Teaching basic computer science and programming to people at risk of social exclusion.",
+    technologies: ["Office", "Basic Programming", "Digital Tools"]
   }
 ];
 
@@ -30,7 +30,7 @@ const ExperienceSection = () => {
         >
           <div className="flex items-center justify-center mb-8">
             <Briefcase className="w-6 h-6 text-accent mr-2" />
-            <h2 className="text-2xl font-semibold text-primary">Experiencia Laboral</h2>
+            <h2 className="text-2xl font-semibold text-primary">Work Experience</h2>
           </div>
           <div className="space-y-8">
             {experiences.map((exp, index) => (

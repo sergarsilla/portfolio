@@ -37,8 +37,8 @@ const Index = () => {
               Computer Engineering Student
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Full Stack Developer especializado en el desarrollo de aplicaciones móviles y web.
-              Estudiante de Ingeniería Informática en la Universidad Politécnica Madrid.
+              Full Stack Developer specialized in mobile and web application development.
+              Computer Engineering student at Universidad Politécnica Madrid.
             </p>
           </motion.div>
         </div>
@@ -52,7 +52,7 @@ const Index = () => {
           className="py-12"
         >
           <h2 className="text-2xl font-semibold text-foreground text-center mb-8">
-            Proyectos Destacados
+            Featured Projects
           </h2>
           <ProjectGrid />
         </motion.div>
