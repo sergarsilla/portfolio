@@ -1,38 +1,47 @@
-
 import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
     title: "AI Image Generator App",
     description:
-      "Mobile application for creating images with AI. Developed with modern technologies and published on Google Play Store.",
-    technologies: ["Android - iOS", "React-Native", "AI APIs", "TypeScript", "Firebase"],
-    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.aiimagegenerator",
+      "I have developed a mobile application to create images with AI and I have published it on the Google Play Store.",
+    technologies: [
+      "Android - iOS",
+      "React-Native",
+      "AI APIs",
+      "TypeScript",
+      "Firebase",
+    ],
+    liveUrl:
+      "https://play.google.com/store/apps/details?id=com.sergarsilla.aiimagegenerator",
   },
   {
-    title: "",
-    description: "",
-    technologies: [],
-    liveUrl: "",
+    title: "Tennis Tournaments App",
+    description:
+      'I have developed Tennis Tournaments App: A web application built with React, Firebase, and JavaScript that simplifies the organization and management of tennis tournaments by enabling easy scheduling and match tracking. Developed as a team project using agile methodologies, it involved through planning, follow-up, testing, and quality assurance to deliver a robust solution. To view the admin options, log in with "admin@admin.com" and "adminadmin" as credentials.',
+    technologies: ["React", "Firebase", "JavaScript"],
+    liveUrl: "https://tennis-tournaments-af24a.web.app",
   },
   {
     title: "Word Games App",
     description:
-      "Mobile application that compiles word games. Developed for Android and published on Google Play Store.",
+      "I have developed a mobile application that collect some word games such as crossword or wordle and I have published it on the Google Play Store.",
     technologies: ["Android - iOS", "React-Native", "TypeScript", "Firebase"],
-    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.wordgame",
+    liveUrl:
+      "https://play.google.com/store/apps/details?id=com.sergarsilla.wordgame",
   },
   {
     title: "Task Manager App",
     description:
-      "Mobile application for managing daily tasks. Developed with a focus on productivity and user experience.",
+      "I have developed a mobile application to manage your daily tasks and I have published it on the Google Play Store.",
     technologies: ["Android - iOS", "React-Native", "JavaScript", "Firebase"],
-    liveUrl: "https://play.google.com/store/apps/details?id=com.sergarsilla.taskmaster",
+    liveUrl:
+      "https://play.google.com/store/apps/details?id=com.sergarsilla.taskmaster",
   },
   {
     title: "Weather App",
     description:
-      "Web application to visualize weather in any city using React and Firebase.",
+      "I have developed a web application to visualize the weather in any city and published it with Firebase Hosting.",
     technologies: ["React", "Firebase", "JavaScript", "Weather API"],
     liveUrl: "https://weather-app-d654f.web.app",
   },

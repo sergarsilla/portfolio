@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
@@ -10,7 +9,9 @@ const Index = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
     setIsDark(prefersDark);
     if (prefersDark) {
       document.documentElement.classList.add("dark");
@@ -36,15 +37,19 @@ const Index = () => {
             <h1 className="text-4xl font-bold text-foreground mb-4">
               Computer Engineering Student
             </h1>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">
+              Software Engineer / Developer
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Full Stack Developer specialized in mobile and web application development.
-              Computer Engineering student at Universidad Politécnica Madrid.
+              Software Developer specialized in mobile and web application
+              development. Computer Engineering student at Universidad
+              Politécnica de Madrid.
             </p>
           </motion.div>
         </div>
-        
+
         <ExperienceSection />
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -56,7 +61,7 @@ const Index = () => {
           </h2>
           <ProjectGrid />
         </motion.div>
-        
+
         <SkillsSection />
       </main>
     </div>

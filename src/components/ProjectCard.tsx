@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Github, Globe } from "lucide-react";
 
