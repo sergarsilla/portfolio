@@ -51,7 +51,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Enviar email usando Resend
-    const emailData = await resend.emails.send({
+    const response = await resend.emails.send({
       from: 'Portfolio Contact <noreply@resend.dev>', // Cambia por tu dominio verificado
       to: [process.env.TO_EMAIL || 'tu@email.com'], // Tu email
       subject: `💼 Nuevo mensaje desde tu portfolio - ${name}`,
@@ -108,12 +108,17 @@ Enviado el: ${new Date().toLocaleString('es-ES')}
       `.trim()
     });
 
-    console.log('Email enviado exitosamente:', emailData.id);
+    if (!response.data || !response.data.id) {
+      console.error('Error: No se pudo enviar el email, respuesta inválida:', response);
+      return res.status(500).json({ error: 'No se pudo enviar el email' });
+    }
+
+    console.log('Email enviado exitosamente:', response.data.id);
 
     return res.status(200).json({ 
       success: true,
       message: 'Mensaje enviado correctamente',
-      id: emailData.id
+      id: response.data.id
     });
 
   } catch (error) {
