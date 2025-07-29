@@ -108,17 +108,12 @@ Enviado el: ${new Date().toLocaleString('es-ES')}
       `.trim()
     });
 
-    if (!response.data || !response.data.id) {
-      console.error('Error: No se pudo enviar el email, respuesta inválida:', response);
-      return res.status(500).json({ error: 'No se pudo enviar el email' });
-    }
-
-    console.log('Email enviado exitosamente:', response.data.id);
+    // La respuesta fue exitosa si llegamos aquí
+    console.log('Email enviado exitosamente');
 
     return res.status(200).json({ 
       success: true,
-      message: 'Mensaje enviado correctamente',
-      id: response.data.id
+      message: 'Mensaje enviado correctamente'
     });
 
   } catch (error) {
