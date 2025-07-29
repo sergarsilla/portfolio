@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Github, Globe } from "lucide-react";
+import { Language } from "../hooks/useLanguage";
+import { getTranslation } from "../utils/translations";
+import HoverEffects from "./animations/HoverEffects";
 
 interface ProjectCardProps {
   title: string;
@@ -8,6 +11,7 @@ interface ProjectCardProps {
   liveUrl?: string;
   githubUrl?: string;
   index: number;
+  language: Language;
 }
 
 const ProjectCard = ({
@@ -17,50 +21,146 @@ const ProjectCard = ({
   liveUrl,
   githubUrl,
   index,
+  language,
 }: ProjectCardProps) => {
+  const t = getTranslation(language);
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-background dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200 dark:border-gray-700 p-6"
+      initial={{ opacity: 0, y: 30, rotateX: -15 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: [0.25, 0.25, 0.25, 0.75]
+      }}
+      style={{ perspective: 1000 }}
     >
-      <h3 className="text-xl font-semibold text-foreground mb-3">{title}</h3>
-      <p className="text-muted-foreground mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {technologies.map((tech) => (
-          <span
-            key={tech}
-            className="px-3 py-1 bg-secondary dark:bg-gray-700 rounded-full text-sm text-foreground"
+      <motion.div
+        className="bg-card/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-accent/10 p-6 h-full flex flex-col relative group hover:border-accent/30 transition-all duration-300"
+        whileHover={{
+          scale: 1.03,
+          y: -15,
+          rotateX: 5,
+          rotateY: 5,
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.3)",
+          transition: {
+            duration: 0.3,
+            ease: [0.4, 0, 0.2, 1]
+          }
+        }}
+        whileTap={{ scale: 0.98 }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Animated background gradient */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          initial={{ scale: 0, rotate: 0 }}
+          whileHover={{ scale: 1, rotate: 180 }}
+          transition={{ duration: 0.8 }}
+        />
+        
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-blue-400 rounded-full"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + (i % 2) * 40}%`,
+              }}
+              animate={{
+                y: [-10, -30, -10],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10">
+          <motion.h3 
+            className="text-xl font-semibold text-foreground mb-3"
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
           >
-            {tech}
-          </span>
-        ))}
-      </div>
-      <div className="flex space-x-4">
-        {githubUrl && (
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200"
-          >
-            <Github className="w-5 h-5 mr-1" />
-            <span>Código</span>
-          </a>
-        )}
-        {liveUrl && (
-          <a
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200"
-          >
-            <Globe className="w-5 h-5 mr-1" />
-            <span>Demo</span>
-          </a>
-        )}
-      </div>
+            {title}
+          </motion.h3>
+          <p className="text-muted-foreground mb-4 flex-grow">{description}</p>
+          
+          <div className="flex flex-wrap gap-2 mb-4">
+            {technologies.map((tech, techIndex) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: (index * 0.1) + (techIndex * 0.05) }}
+                whileHover={{ 
+                  scale: 1.1,
+                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                  color: 'rgb(59, 130, 246)'
+                }}
+                className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-sm text-foreground cursor-default transition-all duration-200 hover:bg-accent hover:text-background"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+          
+          <div className="flex space-x-4">
+            {githubUrl && (
+              <motion.a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ 
+                  scale: 1.1,
+                  color: 'rgb(59, 130, 246)'
+                }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200 group/link"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Github className="w-5 h-5 mr-2" />
+                </motion.div>
+                <span className="group-hover/link:translate-x-1 transition-transform duration-200">
+                  {t.projects.code}
+                </span>
+              </motion.a>
+            )}
+            {liveUrl && (
+              <motion.a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ 
+                  scale: 1.1,
+                  color: 'rgb(34, 197, 94)'
+                }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center text-foreground hover:text-green-500 transition-colors duration-200 group/link"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Globe className="w-5 h-5 mr-2" />
+                </motion.div>
+                <span className="group-hover/link:translate-x-1 transition-transform duration-200">
+                  {t.projects.demo}
+                </span>
+              </motion.a>
+            )}
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
