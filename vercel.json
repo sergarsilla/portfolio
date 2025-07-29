@@ -1,10 +1,10 @@
 {
   "functions": {
     "api/contact.ts": {
-      "runtime": "@vercel/node@3.0.0"
+      "runtime": "@vercel/node@4.0.0"
     },
     "api/contact-with-resend.ts": {
-      "runtime": "@vercel/node@3.0.0"
+      "runtime": "@vercel/node@4.0.0"
     }
   },
   "rewrites": [
