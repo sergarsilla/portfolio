@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/contact.ts": {
-      "runtime": "@vercel/node"
+      "runtime": "@vercel/node@22"
     }
   },
   "rewrites": [
