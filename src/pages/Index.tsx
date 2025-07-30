@@ -30,19 +30,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen h-full bg-background transition-colors duration-300 scroll-container">
+    <div className="min-h-screen h-full transition-colors duration-300 scroll-container">
       <Header
         isDark={isDark}
         onToggleTheme={toggleTheme}
         language={language}
         onToggleLanguage={toggleLanguage}
       />
-      <main>
-        <section className="section-spacing min-h-screen flex items-center w-full">
-          <div className="w-full">
-            <HeroSection language={language} />
-          </div>
-        </section>
+      <main className="bg-background">
+        <HeroSection language={language} />
 
         <section
           id="experience"

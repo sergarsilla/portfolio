@@ -51,11 +51,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
   };
 
   return (
-    <section className="section-spacing relative overflow-hidden min-h-[90vh] flex items-center">
-      {!reducedMotion && <Background3D />}
+    <section className="min-h-screen relative overflow-hidden flex items-center bg-background">
+      <div className="absolute inset-0">
+        {!reducedMotion && <Background3D />}
+      </div>
       
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10 -z-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10"></div>
       
       <div className="container-custom relative z-10">
         <motion.div
