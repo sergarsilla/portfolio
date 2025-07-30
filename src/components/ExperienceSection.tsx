@@ -111,11 +111,9 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                           }}
                           whileHover={{ 
                             scale: 1.03,
-                            backgroundColor: 'var(--accent)',
-                            color: 'var(--background)',
                             transition: { duration: 0.15 }
                           }}
-                          className="px-3 py-1 bg-accent/10 rounded-full text-sm text-foreground cursor-default transition-all duration-150 border border-accent/20 hover:border-accent"
+                          className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 rounded-full text-sm text-gray-800 dark:text-gray-200 cursor-default transition-all duration-150 hover:border-blue-500 hover:bg-blue-500 hover:text-white"
                         >
                           {tech}
                         </motion.span>

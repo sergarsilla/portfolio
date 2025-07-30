@@ -23,5 +23,25 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          animations: ['framer-motion'],
+          router: ['react-router-dom'],
+          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-toast', '@radix-ui/react-tooltip']
+        }
+      }
+    },
+    target: 'esnext',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production'
+      }
+    }
+  },
   base: '/'
 }));

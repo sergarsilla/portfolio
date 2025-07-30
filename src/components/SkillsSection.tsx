@@ -84,7 +84,7 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                           transition: { duration: 0.1 }
                         }}
                         whileTap={{ scale: 0.98 }}
-                        className="px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm cursor-default transition-all duration-100 font-medium text-foreground hover:border-accent hover:bg-accent hover:text-white dark:hover:text-white"
+                        className="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 rounded-full text-sm cursor-default transition-all duration-200 font-medium text-gray-800 dark:text-gray-200 hover:border-blue-500 hover:bg-blue-500 hover:text-white"
                       >
                         {skill}
                       </motion.span>

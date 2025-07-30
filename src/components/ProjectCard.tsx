@@ -114,11 +114,9 @@ const ProjectCard = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: (index * 0.1) + (techIndex * 0.05) }}
                 whileHover={{ 
-                  scale: 1.1,
-                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                  color: 'rgb(59, 130, 246)'
+                  scale: 1.1
                 }}
-                className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-sm text-foreground cursor-default transition-all duration-200 hover:bg-accent hover:text-background"
+                className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 rounded-full text-sm text-gray-800 dark:text-gray-200 cursor-default transition-all duration-200 hover:border-blue-500 hover:bg-blue-500 hover:text-white"
               >
                 {tech}
               </motion.span>
@@ -132,11 +130,10 @@ const ProjectCard = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 
-                  scale: 1.1,
-                  color: 'rgb(59, 130, 246)'
+                  scale: 1.1
                 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex items-center text-foreground hover:text-accent dark:hover:text-accent-dark transition-colors duration-200 group/link"
+                className="flex items-center text-foreground hover:text-accent dark:hover:text-accent transition-colors duration-200 group/link"
               >
                 <motion.div
                   whileHover={{ rotate: 360 }}
@@ -155,11 +152,10 @@ const ProjectCard = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 
-                  scale: 1.1,
-                  color: 'rgb(34, 197, 94)'
+                  scale: 1.1
                 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex items-center text-foreground hover:text-green-500 transition-colors duration-200 group/link"
+                className="flex items-center text-foreground hover:text-green-500 dark:hover:text-green-400 transition-colors duration-200 group/link"
               >
                 <motion.div
                   whileHover={{ rotate: 360 }}

@@ -1,41 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const Background3D: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    setMousePosition({
+      x: (e.clientX / window.innerWidth) * 100,
+      y: (e.clientY / window.innerHeight) * 100,
+    });
   }, []);
 
-  // Create floating geometric shapes
-  const shapes = Array.from({ length: 8 }, (_, i) => ({
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    const throttledMouseMove = (e: MouseEvent) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => handleMouseMove(e), 16); // ~60fps
+    };
+
+    window.addEventListener('mousemove', throttledMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', throttledMouseMove);
+      clearTimeout(timeoutId);
+    };
+  }, [handleMouseMove]);
+
+  // Memoize shapes to prevent recreation on every render
+  const shapes = useMemo(() => Array.from({ length: 5 }, (_, i) => ({
     id: i,
-    size: Math.random() * 60 + 40,
+    size: Math.random() * 40 + 30,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 15 + 10,
+    duration: Math.random() * 20 + 15,
     delay: Math.random() * 3,
-    shape: ['circle', 'square', 'triangle'][Math.floor(Math.random() * 3)],
-  }));
+    shape: ['circle', 'square'][Math.floor(Math.random() * 2)],
+  })), []);
 
-  // Create subtle particles
-  const particles = Array.from({ length: 30 }, (_, i) => ({
+  // Reduce particles for better performance
+  const particles = useMemo(() => Array.from({ length: 15 }, (_, i) => ({
     id: i,
     size: Math.random() * 2 + 1,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 25 + 15,
+    duration: Math.random() * 30 + 20,
     delay: Math.random() * 5,
-  }));
+  })), []);
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -58,21 +67,21 @@ const Background3D: React.FC = () => {
 
       {/* Interactive mouse-following gradient */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl"
+        className="absolute w-80 h-80 rounded-full opacity-15 blur-3xl will-change-transform"
         style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)",
           left: `${mousePosition.x}%`,
           top: `${mousePosition.y}%`,
           transform: "translate(-50%, -50%)"
         }}
-        transition={{ type: "spring", damping: 30, stiffness: 200 }}
+        transition={{ type: "spring", damping: 25, stiffness: 150 }}
       />
 
       {/* Floating geometric shapes */}
       {shapes.map((shape) => (
         <motion.div
           key={shape.id}
-          className="absolute opacity-10"
+          className="absolute opacity-8 will-change-transform"
           style={{
             width: shape.size,
             height: shape.size,
@@ -80,10 +89,10 @@ const Background3D: React.FC = () => {
             top: `${shape.y}%`,
           }}
           animate={{
-            y: [0, -50, 0],
-            x: [0, 30, 0],
-            rotate: [0, 180, 360],
-            scale: [0.8, 1.2, 0.8],
+            y: [0, -30, 0],
+            x: [0, 20, 0],
+            rotate: shape.shape === 'square' ? [0, 90, 180] : [0, 180, 360],
+            scale: [0.9, 1.1, 0.9],
           }}
           transition={{
             duration: shape.duration,
@@ -93,18 +102,10 @@ const Background3D: React.FC = () => {
           }}
         >
           {shape.shape === 'circle' && (
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-purple-400" />
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400/60 to-purple-400/60" />
           )}
           {shape.shape === 'square' && (
-            <div className="w-full h-full bg-gradient-to-br from-purple-400 to-cyan-400 rotate-45" />
-          )}
-          {shape.shape === 'triangle' && (
-            <div 
-              className="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-400"
-              style={{
-                clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)"
-              }}
-            />
+            <div className="w-full h-full bg-gradient-to-br from-purple-400/60 to-cyan-400/60 rotate-45" />
           )}
         </motion.div>
       ))}
@@ -113,7 +114,7 @@ const Background3D: React.FC = () => {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-gradient-to-r from-blue-400/30 to-purple-400/30"
+          className="absolute rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 will-change-transform"
           style={{
             width: particle.size,
             height: particle.size,
@@ -121,10 +122,10 @@ const Background3D: React.FC = () => {
             top: `${particle.y}%`,
           }}
           animate={{
-            y: [0, -80, 0],
-            x: [0, 40, 0],
-            opacity: [0.1, 0.6, 0.1],
-            scale: [0.5, 1, 0.5],
+            y: [0, -60, 0],
+            x: [0, 30, 0],
+            opacity: [0.1, 0.4, 0.1],
+            scale: [0.6, 1, 0.6],
           }}
           transition={{
             duration: particle.duration,
