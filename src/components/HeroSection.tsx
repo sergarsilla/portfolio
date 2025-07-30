@@ -79,8 +79,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
           >
             <span className="text-gradient">
               {language === 'es' 
-                ? 'Ingeniero de Software especializado en la construcción y seguridad de sistemas complejos'
-                : 'Software Engineer specialized in building and securing complex systems'
+                ? 'Ingeniero de Software | Desarrollo de Software & Seguridad Ofensiva'
+                : 'Software Engineer | Software Development & Offensive Security'
               }
             </span>
           </motion.h2>
@@ -90,8 +90,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12"
           >
             {language === 'es'
-              ? 'Combinando la arquitectura del software con una mentalidad ofensiva en ciberseguridad.'
-              : 'Combining software architecture with an offensive cybersecurity mindset.'
+              ? 'Ingeniero Informático por la UPM, especializado en desarrollo móvil y arquitectura de software. Estudiante de Máster en Ciberseguridad y Hacking Ético.'
+              : 'Computer Engineer from UPM, specialized in mobile development and software architecture. Master\'s student in Cybersecurity and Ethical Hacking.'
             }
           </motion.p>
 
