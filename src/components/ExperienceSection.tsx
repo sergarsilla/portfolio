@@ -52,35 +52,42 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                 direction="up"
               >
                 <motion.div
-                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-accent/10 relative overflow-hidden group hover:border-accent/30 transition-all duration-300"
+                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-accent/10 relative overflow-hidden group hover:border-accent/30 transition-all duration-200"
                   whileHover={{
                     scale: 1.02,
-                    y: -5,
+                    y: -4,
+                    boxShadow: "0 10px 30px -5px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)",
                     transition: {
-                      duration: 0.3,
-                      ease: [0.4, 0, 0.2, 1]
+                      duration: 0.2,
+                      ease: [0.25, 0.25, 0.25, 0.75]
                     }
                   }}
                 >
-                  {/* Subtle glow effect */}
+                  {/* Subtle gradient overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                     initial={false}
+                  />
+                  
+                  {/* Left border accent */}
+                  <motion.div
+                    className="absolute left-0 top-0 w-1 h-0 bg-gradient-to-b from-accent to-accent/50 group-hover:h-full transition-all duration-300 ease-out"
+                  />
+                  
+                  {/* Subtle shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
                   />
                   
                   {/* Content */}
                   <div className="relative z-10">
                     <motion.h3 
-                      className="text-xl font-semibold text-foreground mb-2"
-                      whileHover={{ x: 3 }}
-                      transition={{ duration: 0.2 }}
+                      className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors duration-200"
                     >
                       {exp.position}
                     </motion.h3>
                     <motion.h4 
                       className="text-lg text-accent mb-2 font-medium"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
                     >
                       {exp.company}
                     </motion.h4>
@@ -103,11 +110,12 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                             damping: 20
                           }}
                           whileHover={{ 
-                            scale: 1.05,
+                            scale: 1.03,
                             backgroundColor: 'var(--accent)',
-                            color: 'var(--background)'
+                            color: 'var(--background)',
+                            transition: { duration: 0.15 }
                           }}
-                          className="px-3 py-1 bg-accent/10 rounded-full text-sm text-foreground cursor-default transition-all duration-200 border border-accent/20 hover:border-accent"
+                          className="px-3 py-1 bg-accent/10 rounded-full text-sm text-foreground cursor-default transition-all duration-150 border border-accent/20 hover:border-accent"
                         >
                           {tech}
                         </motion.span>

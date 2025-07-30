@@ -150,7 +150,7 @@ const projectsData: ProjectWithTranslations[] = [
     },
     technologies: ['React', 'Firebase', 'JavaScript', 'Weather API'],
     category: 'development',
-    liveUrl: 'https://weather-app-d654f.web.app'
+    liveUrl: 'https://weather-app-a854f.firebaseapp.com'
   }
 ];
 

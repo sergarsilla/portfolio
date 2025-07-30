@@ -81,12 +81,10 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                         }}
                         whileHover={{ 
                           scale: 1.05,
-                          backgroundColor: 'var(--accent)',
-                          color: 'var(--background)',
                           transition: { duration: 0.1 }
                         }}
                         whileTap={{ scale: 0.98 }}
-                        className="px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm cursor-default transition-all duration-100 font-medium text-foreground hover:border-accent"
+                        className="px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm cursor-default transition-all duration-100 font-medium text-foreground hover:border-accent hover:bg-accent hover:text-white dark:hover:text-white"
                       >
                         {skill}
                       </motion.span>

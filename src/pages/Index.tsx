@@ -30,57 +30,39 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background transition-colors duration-300">
-      <Header 
-        isDark={isDark} 
+    <div className="min-h-screen h-full bg-background transition-colors duration-300 scroll-container">
+      <Header
+        isDark={isDark}
         onToggleTheme={toggleTheme}
         language={language}
         onToggleLanguage={toggleLanguage}
       />
       <main>
-        <HeroSection language={language} />
-        
-        {/* Section divider */}
-        <div className="py-8">
-          <div className="container-custom">
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto"></div>
+        <section className="section-spacing min-h-screen flex items-center w-full">
+          <div className="w-full">
+            <HeroSection language={language} />
           </div>
-        </div>
-        
-        <div id="experience">
-          <ExperienceSection language={language} />
-        </div>
-        
-        {/* Section divider */}
-        <div className="py-8">
-          <div className="container-custom">
-            <div className="flex justify-center">
-              <div className="flex space-x-2">
-                {[...Array(3)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="w-2 h-2 bg-accent rounded-full"
-                  />
-                ))}
-              </div>
-            </div>
+        </section>
+
+        <section
+          id="experience"
+          className="section-spacing min-h-screen flex items-center w-full"
+        >
+          <div className="w-full">
+            <ExperienceSection language={language} />
           </div>
-        </div>
-        
+        </section>
+
         <motion.section
           id="projects"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="section-spacing"
+          className="section-spacing min-h-screen flex items-center w-full"
         >
-          <div className="container-custom">
-            <motion.h2 
+          <div className="container-custom w-full">
+            <motion.h2
               className="text-3xl md:text-4xl font-bold text-center mb-16"
               whileInView={{ scale: [0.9, 1.05, 1] }}
               transition={{ duration: 0.5 }}
@@ -94,23 +76,17 @@ const Index = () => {
           </div>
         </motion.section>
 
-        {/* Section divider */}
-        <div className="py-8">
-          <div className="container-custom">
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto"></div>
+        <section className="section-spacing min-h-screen flex items-center w-full">
+          <div className="w-full">
+            <SkillsSection language={language} />
           </div>
-        </div>
+        </section>
 
-        <SkillsSection language={language} />
-        
-        {/* Section divider */}
-        <div className="py-8">
-          <div className="container-custom">
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto"></div>
+        <section className="section-spacing min-h-screen flex items-center w-full">
+          <div className="w-full">
+            <ContactSection language={language} />
           </div>
-        </div>
-        
-        <ContactSection language={language} />
+        </section>
       </main>
     </div>
   );

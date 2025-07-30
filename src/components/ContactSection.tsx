@@ -38,7 +38,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ language }) => {
   ];
 
   return (
-    <section className="section-spacing bg-gradient-to-br from-secondary/30 to-secondary/10 relative overflow-hidden">
+    <section id="contact" className="section-spacing bg-gradient-to-br from-secondary/30 to-secondary/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>

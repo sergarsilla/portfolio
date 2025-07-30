@@ -24,6 +24,18 @@ const ProjectCard = ({
   language,
 }: ProjectCardProps) => {
   const t = getTranslation(language);
+  
+  // Random hover direction for each card
+  const hoverDirection = index % 4;
+  const getHoverTransform = () => {
+    switch (hoverDirection) {
+      case 0: return { rotateX: 5, rotateY: 5 }; // top-right
+      case 1: return { rotateX: 5, rotateY: -5 }; // top-left
+      case 2: return { rotateX: -5, rotateY: 5 }; // bottom-right
+      case 3: return { rotateX: -5, rotateY: -5 }; // bottom-left
+      default: return { rotateX: 5, rotateY: 5 };
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, rotateX: -15 }}
@@ -36,31 +48,33 @@ const ProjectCard = ({
       style={{ perspective: 1000 }}
     >
       <motion.div
-        className="bg-card/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-accent/10 p-6 h-full flex flex-col relative group hover:border-accent/30 transition-all duration-300"
+        className="bg-card/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-accent/10 p-6 h-full flex flex-col relative group hover:border-accent/30 transition-all duration-200"
         whileHover={{
-          scale: 1.03,
-          y: -15,
-          rotateX: 5,
-          rotateY: 5,
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.3)",
+          scale: 1.02,
+          y: -8,
+          ...getHoverTransform(),
+          boxShadow: "0 15px 30px -8px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2)",
           transition: {
-            duration: 0.3,
-            ease: [0.4, 0, 0.2, 1]
+            duration: 0.2,
+            ease: [0.25, 0.25, 0.25, 0.75]
           }
         }}
         whileTap={{ scale: 0.98 }}
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {/* Animated background gradient */}
+        {/* Animated background gradient with random direction */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           initial={{ scale: 0, rotate: 0 }}
-          whileHover={{ scale: 1, rotate: 180 }}
-          transition={{ duration: 0.8 }}
+          whileHover={{ 
+            scale: 1, 
+            rotate: hoverDirection % 2 === 0 ? 180 : -180 
+          }}
+          transition={{ duration: 0.4 }}
         />
         
         {/* Floating particles effect */}
-        <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}

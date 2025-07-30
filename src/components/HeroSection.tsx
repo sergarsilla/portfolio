@@ -141,11 +141,96 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             className="mt-16 flex justify-center"
           >
             <motion.div
-              className="w-32 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1, delay: 1.2 }}
-            />
+              className="relative cursor-pointer group"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Main animated bar */}
+              <motion.div
+                className="w-32 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-full relative overflow-hidden"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 1.2 }}
+              >
+                {/* Animated glow effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-accent/50 via-accent to-accent/50 rounded-full"
+                  animate={{
+                    x: ["-100%", "100%"],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+              
+              {/* Interactive expanding effect */}
+              <motion.div
+                className="absolute inset-0 bg-accent/20 rounded-full opacity-0 group-hover:opacity-100"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0, 0.3, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              
+              {/* Pulsing dots on sides */}
+              <motion.div
+                className="absolute -left-2 top-1/2 w-2 h-2 bg-accent rounded-full transform -translate-y-1/2"
+                animate={{
+                  scale: [0.8, 1.2, 0.8],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="absolute -right-2 top-1/2 w-2 h-2 bg-accent rounded-full transform -translate-y-1/2"
+                animate={{
+                  scale: [1.2, 0.8, 1.2],
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              
+              {/* Hover particles */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-accent rounded-full"
+                    style={{
+                      left: `${10 + i * 15}%`,
+                      top: "50%",
+                    }}
+                    animate={{
+                      y: [-10, -20, -10],
+                      opacity: [0, 1, 0],
+                      scale: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: i * 0.1,
+                    }}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
