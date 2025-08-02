@@ -169,7 +169,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         <p className="text-muted-foreground">{t.subtitle}</p>
         
         {/* Botones de test temporal */}
-        <div className="mt-4 flex gap-2 justify-center">
+        <div className="mt-4 flex gap-2 justify-center flex-wrap">
+          <button
+            onClick={() => testAPI('contact-debug')}
+            className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600"
+          >
+            🔍 Debug
+          </button>
           <button
             onClick={() => testAPI('contact-simple')}
             className="px-3 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600"

@@ -11,6 +11,9 @@
     },
     "api/contact-simple.ts": {
       "runtime": "@vercel/node@4.0.0"
+    },
+    "api/contact-debug.ts": {
+      "runtime": "@vercel/node@4.0.0"
     }
   },
   "rewrites": [
