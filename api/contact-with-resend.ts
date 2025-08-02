@@ -1,7 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Inicializar Resend solo si tenemos la API key
+let resend: Resend | null = null;
+if (process.env.RESEND_API_KEY) {
+  resend = new Resend(process.env.RESEND_API_KEY);
+}
 
 // Configuración CORS
 const corsHeaders = {
@@ -27,7 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     // Verificar variables de entorno críticas
-    if (!process.env.RESEND_API_KEY) {
+    if (!process.env.RESEND_API_KEY || !resend) {
       console.error('RESEND_API_KEY no está configurada');
       return res.status(500).json({ 
         error: 'Error de configuración del servidor',

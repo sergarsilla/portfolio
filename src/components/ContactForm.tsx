@@ -112,6 +112,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         setFormData({ name: '', email: '', message: '' });
       } else {
         // Mostrar error más específico si está disponible
+        console.error('Error response:', data);
         const errorMessage = data.details ? `${data.error}: ${data.details}` : data.error || t.error;
         throw new Error(errorMessage);
       }
@@ -129,6 +130,32 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     }
   };
 
+  const testAPI = async () => {
+    const testData = {
+      name: "Test User",
+      email: "test@example.com", 
+      message: "Este es un mensaje de prueba"
+    };
+
+    try {
+      console.log('🧪 Probando API...');
+      const response = await fetch('/api/contact-with-resend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(testData)
+      });
+
+      const data = await response.json();
+      console.log('📊 Status:', response.status);
+      console.log('📥 Respuesta:', data);
+      
+      alert(`Status: ${response.status}\nRespuesta: ${JSON.stringify(data, null, 2)}`);
+    } catch (error) {
+      console.error('💥 Error:', error);
+      alert(`Error: ${error}`);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -140,6 +167,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-foreground mb-2">{t.title}</h3>
         <p className="text-muted-foreground">{t.subtitle}</p>
+        
+        {/* Botón de test temporal */}
+        <button
+          onClick={testAPI}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600"
+        >
+          🧪 Test API (temporal)
+        </button>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
