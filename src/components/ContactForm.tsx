@@ -96,28 +96,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     setStatus({ type: 'loading', message: t.sending });
     
     try {
-      // Crear FormData para FormSubmit
-      const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('message', formData.message);
-      form.append('_subject', `💼 Nuevo mensaje desde tu portfolio - ${formData.name}`);
-      form.append('_captcha', 'false');
-
-      const response = await fetch('https://formsubmit.co/contact.sergarsilla@gmail.com', {
+      // Usar nuestra API de Resend
+      const response = await fetch('/api/contact-with-resend', {
         method: 'POST',
-        body: form
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       });
 
-      // FormSubmit siempre funciona, así que mostramos éxito
-      setStatus({ type: 'success', message: t.success });
-      setFormData({ name: '', email: '', message: '' });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus({ type: 'success', message: t.success });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        console.error('Error de la API:', result);
+        setStatus({ 
+          type: 'error', 
+          message: result.error || t.error 
+        });
+      }
       
     } catch (error) {
-      console.error('Error:', error);
-      // Incluso si hay error, probablemente el email se envió
-      setStatus({ type: 'success', message: t.success });
-      setFormData({ name: '', email: '', message: '' });
+      console.error('Error al enviar:', error);
+      setStatus({ type: 'error', message: t.error });
     }
   };
 
