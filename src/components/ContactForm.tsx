@@ -130,7 +130,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     }
   };
 
-  const testAPI = async () => {
+  const testAPI = async (endpoint = 'contact-with-resend') => {
     const testData = {
       name: "Test User",
       email: "test@example.com", 
@@ -138,8 +138,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     };
 
     try {
-      console.log('🧪 Probando API...');
-      const response = await fetch('/api/contact-with-resend', {
+      console.log(`🧪 Probando API ${endpoint}...`);
+      const response = await fetch(`/api/${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(testData)
@@ -149,7 +149,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       console.log('📊 Status:', response.status);
       console.log('📥 Respuesta:', data);
       
-      alert(`Status: ${response.status}\nRespuesta: ${JSON.stringify(data, null, 2)}`);
+      alert(`API: ${endpoint}\nStatus: ${response.status}\nRespuesta: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
       console.error('💥 Error:', error);
       alert(`Error: ${error}`);
@@ -168,13 +168,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         <h3 className="text-2xl font-bold text-foreground mb-2">{t.title}</h3>
         <p className="text-muted-foreground">{t.subtitle}</p>
         
-        {/* Botón de test temporal */}
-        <button
-          onClick={testAPI}
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600"
-        >
-          🧪 Test API (temporal)
-        </button>
+        {/* Botones de test temporal */}
+        <div className="mt-4 flex gap-2 justify-center">
+          <button
+            onClick={() => testAPI('contact-simple')}
+            className="px-3 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600"
+          >
+            🧪 Test Simple
+          </button>
+          <button
+            onClick={() => testAPI('contact-with-resend')}
+            className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600"
+          >
+            🧪 Test Resend
+          </button>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
