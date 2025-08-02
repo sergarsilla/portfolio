@@ -1,56 +1,32 @@
 # 📧 Configuración del Formulario de Contacto
 
-## 🚨 Problema Actual
-El formulario de contacto no funciona porque faltan las variables de entorno necesarias.
+## ✅ Estado Actual
+El formulario de contacto está configurado y listo para usar con Resend.
 
-## ✅ Solución Paso a Paso
+## 🔧 Configuración
 
-### 1. Obtener API Key de Resend
-1. Ve a [Resend Dashboard](https://resend.com/dashboard)
-2. Copia tu API Key (empieza con `re_`)
-
-### 2. Configurar Variables de Entorno
-1. Abre el archivo `.env.local` en la raíz del proyecto
-2. Reemplaza `re_tu_api_key_aqui` con tu API key real
-3. Verifica que el email sea correcto
-
+### Variables de Entorno
+El archivo `.env.local` debe contener:
 ```env
-RESEND_API_KEY=re_tu_api_key_real_aqui
+RESEND_API_KEY=re_MBaeEVpG_GuvkznT8VH4aqMQa6zFAh4SP
 TO_EMAIL=contact.sergarsilla@gmail.com
 ```
 
-### 3. Verificar Configuración
-Ejecuta este comando para verificar que todo esté bien:
+### Verificar Configuración
 ```bash
 node check-env.js
 ```
 
-### 4. Probar la API
-1. Inicia el servidor de desarrollo: `npm run dev:api`
-2. Ve a: http://localhost:3000/api/debug
-3. Verifica que `hasApiKey: true`
+## 📁 Archivos del Sistema
 
-### 5. Probar el Formulario
-1. Llena el formulario en tu sitio web
-2. Revisa los logs en la consola del navegador
-3. Verifica que llegue el email
-
-## 🔧 Scripts de Ayuda
-
-- `node check-env.js` - Verificar variables de entorno
-- `node test-contact-api.js` - Probar la API directamente
-- Endpoint de debug: `/api/debug`
-
-## 📁 Archivos Importantes
-
-- `api/contact-with-resend.ts` - Función principal del formulario
+- `api/contact.ts` - API principal del formulario
 - `src/components/ContactForm.tsx` - Componente del frontend
-- `.env.local` - Variables de entorno (NO subir a git)
+- `.env.local` - Variables de entorno
 - `vercel.json` - Configuración de Vercel
 
 ## 🚀 Deploy en Vercel
 
-Para que funcione en producción, agrega las variables de entorno en:
+Para producción, configura las variables de entorno en:
 1. Vercel Dashboard → Tu proyecto → Settings → Environment Variables
 2. Agrega `RESEND_API_KEY` y `TO_EMAIL`
 3. Redeploy el proyecto
@@ -58,14 +34,23 @@ Para que funcione en producción, agrega las variables de entorno en:
 ## 🐛 Troubleshooting
 
 ### Error: "API key no configurada"
-- Verifica que el archivo `.env.local` existe
-- Verifica que la API key sea correcta
+- Verifica que `.env.local` existe y tiene la API key correcta
 - Reinicia el servidor de desarrollo
 
 ### Error: "Domain not verified"
-- En Resend, verifica tu dominio `sergarsilla.is-a.dev`
-- O cambia el `from` a un dominio verificado
+- El formulario usa `onboarding@resend.dev` que está pre-verificado
+- Para usar tu dominio personalizado, verifica `sergarsilla.is-a.dev` en Resend
 
 ### Error: "Rate limit"
-- Espera unos minutos antes de probar de nuevo
-- Verifica los límites de tu plan de Resend
+- Resend tiene límites por hora/día según tu plan
+- Espera antes de probar de nuevo
+
+## 📧 Funcionamiento
+
+1. El usuario llena el formulario
+2. Se envía a `/api/contact`
+3. La API valida los datos
+4. Se envía el email usando Resend
+5. Se muestra confirmación al usuario
+
+El sistema está limpio y optimizado - se eliminaron todos los archivos de test y APIs duplicadas.

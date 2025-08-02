@@ -96,8 +96,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     setStatus({ type: 'loading', message: t.sending });
     
     try {
-      // Usar nuestra API de Resend
-      const response = await fetch('/api/contact-with-resend', {
+      // Usar nuestra API principal
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
