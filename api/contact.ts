@@ -56,10 +56,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log('✅ Resend inicializado');
 
+    // Configurar destinatario
+    const toEmail = process.env.TO_EMAIL || 'contact.sergarsilla@gmail.com';
+    
+    // Validar email de destino
+    if (!toEmail || !emailRegex.test(toEmail)) {
+      console.error('❌ TO_EMAIL inválido:', toEmail);
+      return res.status(500).json({
+        error: 'Error de configuración del servidor'
+      });
+    }
+    
+    console.log('📧 Enviando email a:', toEmail);
+    console.log('🔑 API Key configurada:', !!process.env.RESEND_API_KEY);
+    
     // Enviar email
     const result = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: [process.env.TO_EMAIL || 'contact.sergarsilla@gmail.com'],
+      to: [toEmail],
       subject: `💼 Nuevo mensaje desde tu portfolio - ${name}`,
       text: `Nuevo mensaje desde tu portfolio
 
@@ -94,6 +108,7 @@ Enviado el: ${new Date().toLocaleString('es-ES')}`,
     });
 
     console.log('✅ Email enviado exitosamente:', result.data?.id);
+    console.log('📊 Resultado completo:', JSON.stringify(result, null, 2));
 
     return res.status(200).json({
       success: true,
@@ -103,17 +118,28 @@ Enviado el: ${new Date().toLocaleString('es-ES')}`,
 
   } catch (error) {
     console.error('❌ Error en contact API:', error);
+    console.error('❌ Error completo:', JSON.stringify(error, null, 2));
     
-    // Manejo específico de errores
-    if (error instanceof Error) {
-      if (error.message.includes('API key')) {
+    // Manejo específico de errores de Resend
+    if (error && typeof error === 'object' && 'message' in error) {
+      const errorMessage = (error as any).message;
+      
+      if (errorMessage.includes('API key') || errorMessage.includes('Unauthorized')) {
         return res.status(500).json({ 
           error: 'Error de configuración del servidor' 
         });
       }
-      if (error.message.includes('rate limit')) {
+      
+      if (errorMessage.includes('rate limit') || errorMessage.includes('Too Many Requests')) {
         return res.status(429).json({
           error: 'Demasiados mensajes enviados. Inténtalo más tarde.'
+        });
+      }
+      
+      if (errorMessage.includes('validation') || errorMessage.includes('field')) {
+        console.error('❌ Error de validación de Resend:', errorMessage);
+        return res.status(400).json({
+          error: 'Error en los datos del email'
         });
       }
     }
