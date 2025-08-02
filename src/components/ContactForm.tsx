@@ -169,24 +169,30 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         <p className="text-muted-foreground">{t.subtitle}</p>
         
         {/* Botones de test temporal */}
-        <div className="mt-4 flex gap-2 justify-center flex-wrap">
+        <div className="mt-4 flex gap-1 justify-center flex-wrap">
+          <button
+            onClick={() => testAPI('test')}
+            className="px-2 py-1 bg-yellow-500 text-white rounded text-xs hover:bg-yellow-600"
+          >
+            ⚡ Test
+          </button>
           <button
             onClick={() => testAPI('contact-debug')}
-            className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600"
+            className="px-2 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600"
           >
             🔍 Debug
           </button>
           <button
             onClick={() => testAPI('contact-simple')}
-            className="px-3 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600"
+            className="px-2 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600"
           >
-            🧪 Test Simple
+            🧪 Simple
           </button>
           <button
             onClick={() => testAPI('contact-with-resend')}
-            className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600"
+            className="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600"
           >
-            🧪 Test Resend
+            🧪 Resend
           </button>
         </div>
       </div>

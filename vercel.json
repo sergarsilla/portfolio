@@ -1,19 +1,7 @@
 {
   "functions": {
-    "api/contact.ts": {
-      "runtime": "@vercel/node@4.0.0"
-    },
-    "api/contact-with-resend.ts": {
-      "runtime": "@vercel/node@4.0.0"
-    },
-    "api/contact-test.ts": {
-      "runtime": "@vercel/node@4.0.0"
-    },
-    "api/contact-simple.ts": {
-      "runtime": "@vercel/node@4.0.0"
-    },
-    "api/contact-debug.ts": {
-      "runtime": "@vercel/node@4.0.0"
+    "api/*.ts": {
+      "runtime": "@vercel/node@5.0.0"
     }
   },
   "rewrites": [
