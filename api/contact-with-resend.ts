@@ -41,9 +41,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const { name, email, message } = req.body;
 
-    // Log para debugging
-    console.log('Datos recibidos:', { name, email, message: message?.substring(0, 50) + '...' });
-
     // Validación básica
     if (!name || !email || !message) {
       return res.status(400).json({
@@ -66,10 +63,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Preparar datos del email
-    const emailData = {
-      from: 'Portfolio Contact <noreply@sergarsilla.is-a.dev>',
-      to: [process.env.TO_EMAIL || 'contact.sergarsilla@gmail.com'],
+    // Enviar email usando Resend
+    const response = await resend.emails.send({
+      from: 'Portfolio Contact <noreply@resend.dev>', // Cambia por tu dominio verificado
+      to: [process.env.TO_EMAIL || 'tu@email.com'], // Tu email
       subject: `💼 Nuevo mensaje desde tu portfolio - ${name}`,
       text: `Nuevo mensaje desde tu portfolio
 
@@ -89,32 +86,22 @@ Enviado el: ${new Date().toLocaleString('es-ES')}`
       subject: emailData.subject
     });
 
-    // Enviar email usando Resend
-    const response = await resend.emails.send(emailData);
-
-    console.log('✅ Email enviado exitosamente:', response);
+    // La respuesta fue exitosa si llegamos aquí
+    console.log('Email enviado exitosamente');
 
     return res.status(200).json({
       success: true,
-      message: 'Mensaje enviado correctamente',
-      id: response.data?.id
+      message: 'Mensaje enviado correctamente'
     });
 
   } catch (error) {
-    console.error('❌ Error completo en el formulario de contacto:', error);
-
-    // Log más detallado del error
-    if (error instanceof Error) {
-      console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
-    }
-
+    console.error('Error en el formulario de contacto:', error);
+    
     // Diferentes tipos de errores
     if (error instanceof Error) {
-      if (error.message.includes('API key') || error.message.includes('Unauthorized')) {
-        return res.status(500).json({
-          error: 'Error de configuración del servidor - API key inválida',
-          details: error.message
+      if (error.message.includes('API key')) {
+        return res.status(500).json({ 
+          error: 'Error de configuración del servidor' 
         });
       }
       if (error.message.includes('rate limit')) {
@@ -122,17 +109,10 @@ Enviado el: ${new Date().toLocaleString('es-ES')}`
           error: 'Demasiados mensajes enviados. Inténtalo más tarde.'
         });
       }
-      if (error.message.includes('domain') || error.message.includes('from')) {
-        return res.status(500).json({
-          error: 'Error de configuración del dominio',
-          details: error.message
-        });
-      }
     }
-
-    return res.status(500).json({
-      error: 'Error interno del servidor. Inténtalo más tarde.',
-      details: error instanceof Error ? error.message : 'Error desconocido'
+    
+    return res.status(500).json({ 
+      error: 'Error interno del servidor. Inténtalo más tarde.' 
     });
   }
 }

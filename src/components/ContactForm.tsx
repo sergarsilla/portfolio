@@ -99,31 +99,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       // Usar nuestra API de Resend
       const response = await fetch('/api/contact-with-resend', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
 
-      const result = await response.json();
+      const data = await response.json();
 
-      if (response.ok && result.success) {
+      if (response.ok) {
         setStatus({ type: 'success', message: t.success });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        console.error('Error de la API:', result);
-        setStatus({ 
-          type: 'error', 
-          message: result.error || t.error 
-        });
+        throw new Error(data.error || t.error);
       }
       
     } catch (error) {
-      console.error('Error al enviar:', error);
+      console.error('Contact form error:', error);
       setStatus({ type: 'error', message: t.error });
     }
   };
