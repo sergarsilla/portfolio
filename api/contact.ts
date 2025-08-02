@@ -122,7 +122,7 @@ Enviado el: ${new Date().toLocaleString('es-ES')}`,
     
     // Manejo específico de errores de Resend
     if (error && typeof error === 'object' && 'message' in error) {
-      const errorMessage = (error as any).message;
+      const errorMessage = (error as unknown).message;
       
       if (errorMessage.includes('API key') || errorMessage.includes('Unauthorized')) {
         return res.status(500).json({ 
