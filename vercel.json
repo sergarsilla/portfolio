@@ -5,6 +5,9 @@
     },
     "api/contact-with-resend.ts": {
       "runtime": "@vercel/node@4.0.0"
+    },
+    "api/contact-test.ts": {
+      "runtime": "@vercel/node@4.0.0"
     }
   },
   "rewrites": [

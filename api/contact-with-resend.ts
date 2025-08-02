@@ -26,6 +26,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Verificar variables de entorno críticas
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY no está configurada');
+      return res.status(500).json({ 
+        error: 'Error de configuración del servidor',
+        details: 'API key de Resend no configurada'
+      });
+    }
+
     const { name, email, message } = req.body;
 
     // Log para debugging
