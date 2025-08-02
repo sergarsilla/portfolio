@@ -50,7 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    // Inicializar Resend
+    // Inicializar Resend con import dinámico
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
 
