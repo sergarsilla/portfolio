@@ -103,16 +103,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       });
 
       const data = await response.json();
+      
+      console.log('Response status:', response.status);
+      console.log('Response data:', data);
 
       if (response.ok) {
         setStatus({ type: 'success', message: t.success });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error(data.error || t.error);
+        // Mostrar error más específico si está disponible
+        const errorMessage = data.details ? `${data.error}: ${data.details}` : data.error || t.error;
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Contact form error:', error);
-      setStatus({ type: 'error', message: t.error });
+      const errorMessage = error instanceof Error ? error.message : t.error;
+      setStatus({ type: 'error', message: errorMessage });
     }
   };
 
