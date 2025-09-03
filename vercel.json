@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "22.x"
+  },
   "functions": {
     "api/*.ts": {
       "runtime": "@vercel/node@5.0.0"
