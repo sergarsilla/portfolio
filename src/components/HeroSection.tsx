@@ -79,8 +79,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
           >
             <span className="text-gradient">
               {language === 'es' 
-                ? 'Ingeniero de Software | Desarrollo de Software & Seguridad Ofensiva'
-                : 'Software Engineer | Software Development & Offensive Security'
+                ? 'Ingeniero Informático | Desarrollo de Software & Ciberseguridad'
+                : 'Computer Engineer | Software Development & Cybersecurity'
               }
             </span>
           </motion.h2>
@@ -104,9 +104,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
                 const projectsSection = document.getElementById('projects');
                 projectsSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 bg-accent text-background font-semibold rounded-xl hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
+              aria-label={language === 'es' ? 'Ir a la sección de proyectos' : 'Go to projects section'}
             >
               {language === 'es' ? 'Explorar Proyectos' : 'Explore Projects'}
             </motion.button>

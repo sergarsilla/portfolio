@@ -1,0 +1,4 @@
+Contact: mailto:sergarsilla@gmail.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: es, en
+Canonical: https://sergarsilla.is-a.dev/.well-known/security.txt

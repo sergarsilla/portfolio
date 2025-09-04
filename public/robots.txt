@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sergarsilla.is-a.dev/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Block access to sensitive files
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /logs/
+Disallow: /.vercel/

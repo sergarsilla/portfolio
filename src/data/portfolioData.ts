@@ -39,8 +39,8 @@ export const experiencesData: ExperienceWithTranslations[] = [
   {
     company: 'ONGAWA Ingeniería para el Desarrollo Humano',
     position: {
-      es: 'Ingeniero de Software',
-      en: 'Software Engineer'
+      es: 'Ingeniero Informático',
+      en: 'Computer Engineer'
     },
     period: {
       es: 'Febrero 2025 - Mayo 2025',

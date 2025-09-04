@@ -68,9 +68,10 @@ const Header = ({ isDark, onToggleTheme, language, onToggleLanguage }: HeaderPro
                 const contactSection = document.getElementById('contact');
                 contactSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-4 py-2 bg-accent text-background font-medium rounded-xl hover:bg-accent/90 transition-all duration-300 group relative overflow-hidden"
+              className="px-4 py-2 bg-accent text-white font-medium rounded-xl hover:bg-accent/90 transition-all duration-300 group relative overflow-hidden shadow-sm"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={language === 'es' ? 'Ir a la sección de contacto' : 'Go to contact section'}
             >
               <motion.div
                 className="absolute inset-0 bg-white/10 rounded-xl opacity-0 group-hover:opacity-100"

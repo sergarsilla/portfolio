@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,13 +18,13 @@
     --secondary-foreground: 220 13% 15%;
     --muted: 220 20% 94%;
     --muted-foreground: 220 13% 35%;
-    --accent: 217 91% 60%;
+    --accent: 262 83% 58%;
     --accent-foreground: 220 20% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 20% 88%;
     --input: 220 20% 88%;
-    --ring: 217 91% 60%;
+    --ring: 262 83% 58%;
     --radius: 0.75rem;
   }
 
@@ -44,28 +42,20 @@
     --secondary-foreground: 220 9% 95%;
     --muted: 220 15% 20%;
     --muted-foreground: 220 9% 75%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 220 15% 12%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 255 255 255;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 15% 25%;
     --input: 220 15% 25%;
-    --ring: 217 91% 60%;
+    --ring: 262 83% 58%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
   }
   
   html {
@@ -73,22 +63,67 @@
     @apply bg-background;
     width: 100%;
     min-height: 100vh;
+    font-display: swap;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 700;
     line-height: 1.2;
+    font-display: swap;
   }
   
   /* Performance optimizations */
-  * {
-    box-sizing: border-box;
-  }
-  
   img, video {
     max-width: 100%;
     height: auto;
+    loading: lazy;
+  }
+  
+  /* Improve font loading performance */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+  }
+  
+  /* Reduce layout shifts */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', monospace;
+    font-display: swap;
+  }
+  
+  /* Prevent layout shifts during loading */
+  .container-custom {
+    min-height: 1px; /* Prevent collapse */
+  }
+  
+  /* Optimize animations for performance */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Improve button focus states for accessibility */
+  button:focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
   }
 }
 

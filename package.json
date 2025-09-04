@@ -11,9 +11,11 @@
     "dev:api": "vercel dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "build:analyze": "vite build && npx vite-bundle-analyzer dist/stats.html",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "echo 'Build completed successfully!'"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
@@ -45,6 +47,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
+    "cssnano": "^7.1.1",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",

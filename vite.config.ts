@@ -30,7 +30,8 @@ export default defineConfig(({ mode }) => ({
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion'],
           router: ['react-router-dom'],
-          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-toast', '@radix-ui/react-tooltip']
+          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-toast', '@radix-ui/react-tooltip'],
+          utils: ['clsx', 'tailwind-merge', 'class-variance-authority']
         }
       }
     },
@@ -39,9 +40,17 @@ export default defineConfig(({ mode }) => ({
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
-        drop_debugger: mode === 'production'
+        drop_debugger: mode === 'production',
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : []
+      },
+      mangle: {
+        safari10: true
       }
-    }
+    },
+    cssCodeSplit: true,
+    sourcemap: false,
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000
   },
   base: '/'
 }));

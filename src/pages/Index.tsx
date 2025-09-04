@@ -6,11 +6,18 @@ import LazySection from "../components/LazySection";
 import { useLanguage } from "../hooks/useLanguage";
 import { getTranslation } from "../utils/translations";
 
-// Lazy load heavy components
+// Lazy load heavy components with better chunking
 const ExperienceSection = lazy(() => import("../components/ExperienceSection"));
 const ProjectGrid = lazy(() => import("../components/ProjectGrid"));
 const SkillsSection = lazy(() => import("../components/SkillsSection"));
 const ContactSection = lazy(() => import("../components/ContactSection"));
+
+// Loading component for better UX
+const SectionLoader = () => (
+  <div className="flex items-center justify-center py-20">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+  </div>
+);
 
 const Index = () => {
   const [isDark, setIsDark] = useState(false);
@@ -49,7 +56,9 @@ const Index = () => {
         >
           <div className="w-full">
             <LazySection>
-              <ExperienceSection language={language} />
+              <Suspense fallback={<SectionLoader />}>
+                <ExperienceSection language={language} />
+              </Suspense>
             </LazySection>
           </div>
         </section>
@@ -93,7 +102,9 @@ const Index = () => {
               </p>
             </div>
             <LazySection>
-              <ProjectGrid language={language} />
+              <Suspense fallback={<SectionLoader />}>
+                <ProjectGrid language={language} />
+              </Suspense>
             </LazySection>
           </div>
         </motion.section>
@@ -101,15 +112,19 @@ const Index = () => {
         <section className="section-spacing min-h-screen flex items-center w-full">
           <div className="w-full">
             <LazySection>
-              <SkillsSection language={language} />
+              <Suspense fallback={<SectionLoader />}>
+                <SkillsSection language={language} />
+              </Suspense>
             </LazySection>
           </div>
         </section>
 
-        <section className="section-spacing min-h-screen flex items-center w-full">
+        <section id="contact" className="section-spacing min-h-screen flex items-center w-full">
           <div className="w-full">
             <LazySection>
-              <ContactSection language={language} />
+              <Suspense fallback={<SectionLoader />}>
+                <ContactSection language={language} />
+              </Suspense>
             </LazySection>
           </div>
         </section>
