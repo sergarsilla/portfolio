@@ -6,8 +6,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
+import { lazy, Suspense } from "react";
+
+// Lazy load analytics to reduce initial bundle size
+const Analytics = lazy(() =>
+  import("@vercel/analytics/react").then((module) => ({
+    default: module.Analytics,
+  }))
+);
+const SpeedInsights = lazy(() =>
+  import("@vercel/speed-insights/react").then((module) => ({
+    default: module.SpeedInsights,
+  }))
+);
 
 const queryClient = new QueryClient();
 
@@ -24,8 +35,10 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      <Analytics />
-      <SpeedInsights />
+      <Suspense fallback={null}>
+        <Analytics />
+        <SpeedInsights />
+      </Suspense>
     </TooltipProvider>
   </QueryClientProvider>
 );

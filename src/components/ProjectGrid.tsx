@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ProjectCard from "./ProjectCard";
 import { Language } from "../hooks/useLanguage";
 import { getProjects } from "../data/portfolioData";
 import ScrollAnimations from "./animations/ScrollAnimations";
+
+// Lazy load ProjectCard for better performance
+const ProjectCard = lazy(() => import("./ProjectCard"));
 
 interface ProjectGridProps {
   language: Language;
@@ -31,7 +33,13 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
             delay={index * 0.1}
             direction="up"
           >
-            <ProjectCard {...project} index={index} language={language} />
+            <Suspense
+              fallback={
+                <div className="h-64 bg-muted animate-pulse rounded-xl" />
+              }
+            >
+              <ProjectCard {...project} index={index} language={language} />
+            </Suspense>
           </ScrollAnimations>
         ))}
       </div>
@@ -52,7 +60,17 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
                   delay={(index + featuredCount) * 0.1}
                   direction="up"
                 >
-                  <ProjectCard {...project} index={index + featuredCount} language={language} />
+                  <Suspense
+                    fallback={
+                      <div className="h-64 bg-muted animate-pulse rounded-xl" />
+                    }
+                  >
+                    <ProjectCard
+                      {...project}
+                      index={index + featuredCount}
+                      language={language}
+                    />
+                  </Suspense>
                 </ScrollAnimations>
               ))}
             </div>
@@ -70,10 +88,13 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
             whileTap={{ scale: 0.95 }}
           >
             <span className="flex items-center gap-2">
-              {showAll 
-                ? (language === 'es' ? 'Ver menos' : 'Show less')
-                : (language === 'es' ? 'Ver más proyectos' : 'View more projects')
-              }
+              {showAll
+                ? language === "es"
+                  ? "Ver menos"
+                  : "Show less"
+                : language === "es"
+                ? "Ver más proyectos"
+                : "View more projects"}
               <motion.svg
                 className="w-5 h-5"
                 fill="none"
@@ -82,10 +103,15 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
                 animate={{ rotate: showAll ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </motion.svg>
             </span>
-            
+
             {/* Button background effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>

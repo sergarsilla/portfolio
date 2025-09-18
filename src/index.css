@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,7 +56,7 @@
     @apply border-border;
     box-sizing: border-box;
   }
-  
+
   html {
     scroll-behavior: smooth;
     @apply bg-background;
@@ -65,10 +64,11 @@
     min-height: 100vh;
     font-display: swap;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Helvetica Neue", Arial, sans-serif;
     font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -76,38 +76,60 @@
     text-rendering: optimizeLegibility;
     font-display: swap;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
     font-weight: 700;
     line-height: 1.2;
     font-display: swap;
   }
-  
+
   /* Performance optimizations */
-  img, video {
+  img,
+  video {
     max-width: 100%;
     height: auto;
-    loading: lazy;
   }
-  
+
+  /* Critical performance improvements */
+  * {
+    will-change: auto;
+  }
+
+  /* Optimize transforms for GPU acceleration */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  /* Contain layout for better performance */
+  .contain-layout {
+    contain: layout;
+  }
+
   /* Improve font loading performance */
   @font-face {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-display: swap;
   }
-  
+
   /* Reduce layout shifts */
   .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', monospace;
+    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", "Consolas",
+      "Monaco", monospace;
     font-display: swap;
   }
-  
+
   /* Prevent layout shifts during loading */
   .container-custom {
     min-height: 1px; /* Prevent collapse */
   }
-  
+
   /* Optimize animations for performance */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -119,7 +141,7 @@
       scroll-behavior: auto !important;
     }
   }
-  
+
   /* Improve button focus states for accessibility */
   button:focus-visible {
     outline: 2px solid hsl(var(--accent));
@@ -131,21 +153,21 @@
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .section-spacing {
     @apply py-20 lg:py-24;
     scroll-snap-align: start;
   }
-  
+
   .scroll-container {
     scroll-snap-type: y proximity;
     overflow-y: auto;
   }
-  
+
   .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
   }
-  
+
   .text-gradient {
     @apply bg-gradient-to-r from-accent via-yellow-400 to-accent bg-clip-text text-transparent;
   }

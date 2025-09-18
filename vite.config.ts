@@ -26,31 +26,58 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion'],
-          router: ['react-router-dom'],
-          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-toast', '@radix-ui/react-tooltip'],
-          utils: ['clsx', 'tailwind-merge', 'class-variance-authority']
+        manualChunks: (id) => {
+          // Vendor chunk for core React libraries
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor';
+          }
+          // Animations chunk for Framer Motion
+          if (id.includes('node_modules/framer-motion')) {
+            return 'animations';
+          }
+          // Router chunk
+          if (id.includes('node_modules/react-router')) {
+            return 'router';
+          }
+          // UI components chunk
+          if (id.includes('node_modules/lucide-react') ||
+            id.includes('node_modules/@radix-ui') ||
+            id.includes('/components/ui/')) {
+            return 'ui';
+          }
+          // Utils chunk
+          if (id.includes('node_modules/clsx') ||
+            id.includes('node_modules/tailwind-merge') ||
+            id.includes('node_modules/class-variance-authority')) {
+            return 'utils';
+          }
+          // Analytics chunk (load separately)
+          if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
+            return 'analytics';
+          }
         }
       }
     },
-    target: 'esnext',
+    target: 'es2020',
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
-        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : []
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug', 'console.warn'] : [],
+        passes: 2
       },
       mangle: {
         safari10: true
+      },
+      format: {
+        comments: false
       }
     },
     cssCodeSplit: true,
     sourcemap: false,
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 500
   },
   base: '/'
 }));

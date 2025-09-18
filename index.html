@@ -4,27 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Preconnect to external domains for faster loading -->
+    <!-- Critical resource hints for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://vercel.live" />
+    <link rel="preconnect" href="https://vitals.vercel-analytics.com" />
 
-    <!-- Optimized font loading with display=swap for better performance -->
+    <!-- Optimized font loading with display=swap and reduced weights -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet"
       />
     </noscript>
-
-    <!-- DNS prefetch for additional performance -->
-    <link rel="dns-prefetch" href="https://vercel.live" />
-    <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
 
     <title>
       Sergio García Mansilla | Ingeniero Informático & Ciberseguridad
@@ -124,6 +122,10 @@
       content="20VB6So5IRUeMjbYNRP9oL1s57nx1nPPby9zu0-gpJQ"
     />
     <link rel="canonical" href="https://sergarsilla.is-a.dev" />
+
+    <!-- Preload critical resources -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="preload" href="/src/App.tsx" as="script" />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
