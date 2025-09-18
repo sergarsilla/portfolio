@@ -91,25 +91,10 @@
   }
 
   /* Performance optimizations */
-  img,
-  video {
+  img, video {
     max-width: 100%;
     height: auto;
-  }
-
-  /* Critical performance improvements */
-  * {
-    will-change: auto;
-  }
-
-  /* Optimize transforms for GPU acceleration */
-  .will-change-transform {
-    will-change: transform;
-  }
-
-  /* Contain layout for better performance */
-  .contain-layout {
-    contain: layout;
+    loading: lazy;
   }
 
   /* Improve font loading performance */

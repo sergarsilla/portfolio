@@ -1,11 +1,9 @@
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ProjectCard from "./ProjectCard";
 import { Language } from "../hooks/useLanguage";
 import { getProjects } from "../data/portfolioData";
 import ScrollAnimations from "./animations/ScrollAnimations";
-
-// Lazy load ProjectCard for better performance
-const ProjectCard = lazy(() => import("./ProjectCard"));
 
 interface ProjectGridProps {
   language: Language;
@@ -33,13 +31,7 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
             delay={index * 0.1}
             direction="up"
           >
-            <Suspense
-              fallback={
-                <div className="h-64 bg-muted animate-pulse rounded-xl" />
-              }
-            >
-              <ProjectCard {...project} index={index} language={language} />
-            </Suspense>
+            <ProjectCard {...project} index={index} language={language} />
           </ScrollAnimations>
         ))}
       </div>
@@ -60,17 +52,11 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
                   delay={(index + featuredCount) * 0.1}
                   direction="up"
                 >
-                  <Suspense
-                    fallback={
-                      <div className="h-64 bg-muted animate-pulse rounded-xl" />
-                    }
-                  >
-                    <ProjectCard
-                      {...project}
-                      index={index + featuredCount}
-                      language={language}
-                    />
-                  </Suspense>
+                  <ProjectCard
+                    {...project}
+                    index={index + featuredCount}
+                    language={language}
+                  />
                 </ScrollAnimations>
               ))}
             </div>

@@ -25,10 +25,10 @@ const Background3D: React.FC = () => {
     };
   }, [handleMouseMove]);
 
-  // Reduce shapes for better mobile performance
+  // Memoize shapes to prevent recreation on every render
   const shapes = useMemo(
     () =>
-      Array.from({ length: 3 }, (_, i) => ({
+      Array.from({ length: 5 }, (_, i) => ({
         id: i,
         size: Math.random() * 40 + 30,
         x: Math.random() * 100,
@@ -40,10 +40,10 @@ const Background3D: React.FC = () => {
     []
   );
 
-  // Significantly reduce particles for mobile performance
+  // Reduce particles for better performance
   const particles = useMemo(
     () =>
-      Array.from({ length: 8 }, (_, i) => ({
+      Array.from({ length: 15 }, (_, i) => ({
         id: i,
         size: Math.random() * 2 + 1,
         x: Math.random() * 100,
