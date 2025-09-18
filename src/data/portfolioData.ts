@@ -87,6 +87,49 @@ interface ProjectWithTranslations {
 
 const projectsData: ProjectWithTranslations[] = [
   {
+    title: 'IntelliCart - Smart Grocery List',
+    description: {
+      es: 'Desarrollé IntelliCart, una aplicación móvil de lista de compras inteligente. La app incluye un chat con IA que ayuda a los usuarios con recetas basándose en los productos de sus listas de compra, y está disponible en Google Play Store y Apple App Store.',
+      en: 'I developed IntelliCart, a smart grocery list mobile application. The app includes an AI chat that helps users with recipes based on the products in their shopping lists, and is available on Google Play Store and Apple App Store.'
+    },
+    technologies: [
+      'Android - iOS',
+      'React Native',
+      'Expo',
+      'TypeScript',
+      'Firebase',
+      'AI Integration'
+    ],
+    category: 'development',
+    liveUrl: 'https://intellicart.netlify.app/'
+  },
+  {
+    title: 'TruDetail - Gift Ideas Planner',
+    description: {
+      es: 'Desarrollé TruDetail, una aplicación móvil que funciona como un "segundo cerebro" para organizar información vital sobre las personas importantes en tu vida. La app ayuda a planificar regalos perfectos basándose en características y "sparks" que el usuario registra sobre familiares y amigos, disponible en ambas stores.',
+      en: 'I developed TruDetail, a mobile application that works as a "second brain" to organize vital information about the people who matter most to you. The app helps plan perfect gifts based on characteristics and "sparks" that users record about family and friends, available on both stores.'
+    },
+    technologies: [
+      'Android - iOS',
+      'React Native',
+      'Expo',
+      'TypeScript',
+      'Firebase'
+    ],
+    category: 'development',
+    liveUrl: 'https://trudetail.netlify.app/en'
+  },
+  {
+    title: 'Tennis Tournaments App',
+    description: {
+      es: 'Desarrollé Tennis Tournaments App: Una aplicación web construida con React, Firebase y JavaScript que simplifica la organización y gestión de torneos de tenis permitiendo programación fácil y seguimiento de partidos. Desarrollada como proyecto en equipo usando metodologías ágiles, involucró planificación completa, seguimiento, pruebas y aseguramiento de calidad para entregar una solución robusta. Implementé un módulo de autenticación de usuarios. El trabajo futuro incluye endurecer la seguridad implementando medidas contra amenazas comunes como credential stuffing y asegurar el hash seguro de contraseñas.',
+      en: 'I developed Tennis Tournaments App: A web application built with React, Firebase, and JavaScript that simplifies the organization and management of tennis tournaments by enabling easy scheduling and match tracking. Developed as a team project using agile methodologies, it involved thorough planning, follow-up, testing, and quality assurance to deliver a robust solution. I implemented a user authentication module. Future work includes hardening security by implementing measures against common threats like credential stuffing and ensuring secure password hashing.'
+    },
+    technologies: ['React', 'Firebase', 'JavaScript'],
+    category: 'development',
+    liveUrl: 'https://tennis-tournaments-af24a.web.app'
+  },
+  {
     title: 'AI Image Generator App',
     description: {
       es: 'Desarrollé una aplicación móvil para crear imágenes con IA y la publiqué en Google Play Store. La aplicación incluye autenticación de usuarios y medidas de seguridad para proteger las API keys y prevenir el uso no autorizado.',
@@ -101,16 +144,6 @@ const projectsData: ProjectWithTranslations[] = [
     ],
     category: 'development',
     liveUrl: 'https://play.google.com/store/apps/details?id=com.sergarsilla.aiimagegenerator'
-  },
-  {
-    title: 'Tennis Tournaments App',
-    description: {
-      es: 'Desarrollé Tennis Tournaments App: Una aplicación web construida con React, Firebase y JavaScript que simplifica la organización y gestión de torneos de tenis permitiendo programación fácil y seguimiento de partidos. Desarrollada como proyecto en equipo usando metodologías ágiles, involucró planificación completa, seguimiento, pruebas y aseguramiento de calidad para entregar una solución robusta. Implementé un módulo de autenticación de usuarios. El trabajo futuro incluye endurecer la seguridad implementando medidas contra amenazas comunes como credential stuffing y asegurar el hash seguro de contraseñas.',
-      en: 'I developed Tennis Tournaments App: A web application built with React, Firebase, and JavaScript that simplifies the organization and management of tennis tournaments by enabling easy scheduling and match tracking. Developed as a team project using agile methodologies, it involved thorough planning, follow-up, testing, and quality assurance to deliver a robust solution. I implemented a user authentication module. Future work includes hardening security by implementing measures against common threats like credential stuffing and ensuring secure password hashing.'
-    },
-    technologies: ['React', 'Firebase', 'JavaScript'],
-    category: 'development',
-    liveUrl: 'https://tennis-tournaments-af24a.web.app'
   },
   {
     title: 'Word Games App',
@@ -257,7 +290,7 @@ export const getSkillCategories = (language: Language): SkillCategory[] => {
       cybersecurity: 'Cybersecurity'
     }
   };
-  
+
   return skillCategoriesData.map(category => ({
     name: skillNames[language][category.nameKey],
     skills: category.skills,
