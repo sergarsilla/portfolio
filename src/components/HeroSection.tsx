@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Language } from '../hooks/useLanguage';
-import { getTranslation } from '../utils/translations';
-import { getAnimationConfig, prefersReducedMotion } from '../utils/animationConfig';
-import Background3D from './animations/Background3D';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Language } from "../hooks/useLanguage";
+import { getTranslation } from "../utils/translations";
+import {
+  getAnimationConfig,
+  prefersReducedMotion,
+} from "../utils/animationConfig";
+import Background3D from "./animations/Background3D";
 
 interface HeroSectionProps {
   language: Language;
@@ -16,12 +19,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
 
   useEffect(() => {
     setReducedMotion(prefersReducedMotion());
-    
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const handleChange = () => setReducedMotion(mediaQuery.matches);
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   const containerVariants = {
@@ -30,24 +33,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
       opacity: 1,
       transition: {
         staggerChildren: reducedMotion ? 0 : animConfig.stagger.hero,
-        delayChildren: reducedMotion ? 0 : 0.2
-      }
-    }
+        delayChildren: reducedMotion ? 0 : 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: {
       opacity: reducedMotion ? 1 : 0,
-      y: reducedMotion ? 0 : 30
+      y: reducedMotion ? 0 : 30,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: reducedMotion ? 0 : animConfig.durations.fadeIn,
-        ease: animConfig.easing.default
-      }
-    }
+        ease: animConfig.easing.default,
+      },
+    },
   };
 
   return (
@@ -55,10 +58,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
       <div className="absolute inset-0">
         {!reducedMotion && <Background3D />}
       </div>
-      
+
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10"></div>
-      
+
       <div className="container-custom relative z-10">
         <motion.div
           variants={containerVariants}
@@ -66,33 +69,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
           animate="visible"
           className="text-center"
         >
-          <motion.h1 
+          <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
           >
             Sergio García Mansilla
           </motion.h1>
-          
-          <motion.h2 
+
+          <motion.h2
             variants={itemVariants}
             className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8"
           >
             <span className="text-gradient">
-              {language === 'es' 
-                ? 'Ingeniero Informático | Desarrollo de Software & Ciberseguridad'
-                : 'Computer Engineer | Software Development & Cybersecurity'
-              }
+              {language === "es"
+                ? "Ingeniero Informático | Desarrollo de Software & Ciberseguridad"
+                : "Computer Engineer | Software Development & Cybersecurity"}
             </span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12"
           >
-            {language === 'es'
-              ? 'Ingeniero Informático por la UPM, especializado en desarrollo móvil y arquitectura de software. Estudiante de Máster en Ciberseguridad y Hacking Ético.'
-              : 'Computer Engineer from UPM, specialized in mobile development and software architecture. Master\'s student in Cybersecurity and Ethical Hacking.'
-            }
+            {language === "es"
+              ? "Ingeniero Informático por la UPM, especializado en desarrollo móvil y arquitectura de software. Estudiante de Máster en Ciberseguridad y Hacking Ético."
+              : "Computer Engineer from UPM, specialized in mobile development and software architecture. Master's student in Cybersecurity and Ethical Hacking."}
           </motion.p>
 
           <motion.div
@@ -101,41 +102,70 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
           >
             <motion.button
               onClick={() => {
-                const projectsSection = document.getElementById('projects');
-                projectsSection?.scrollIntoView({ behavior: 'smooth' });
+                const projectsSection = document.getElementById("projects");
+                projectsSection?.scrollIntoView({ behavior: "smooth" });
               }}
               className="px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              aria-label={language === 'es' ? 'Ir a la sección de proyectos' : 'Go to projects section'}
+              aria-label={
+                language === "es"
+                  ? "Ir a la sección de proyectos"
+                  : "Go to projects section"
+              }
             >
-              {language === 'es' ? 'Explorar Proyectos' : 'Explore Projects'}
+              {language === "es" ? "Explorar Proyectos" : "Explore Projects"}
             </motion.button>
-            
+
             <motion.button
               onClick={() => {
-                const experienceSection = document.getElementById('experience');
-                experienceSection?.scrollIntoView({ behavior: 'smooth' });
+                const experienceSection = document.getElementById("experience");
+                experienceSection?.scrollIntoView({ behavior: "smooth" });
               }}
               className="px-8 py-4 border-2 border-accent text-accent font-semibold rounded-xl hover:bg-accent hover:text-background transition-all duration-300 transform hover:scale-105"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              {language === 'es' ? 'Ver Experiencia' : 'View Experience'}
+              {language === "es" ? "Ver Experiencia" : "View Experience"}
             </motion.button>
-            
+
             <motion.button
-              onClick={() => {
-                const url = language === 'es'
-                  ? "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_Spanish.pdf"
-                  : "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_English.pdf";
-                window.open(url, "_blank");
+              onClick={async () => {
+                const url =
+                  language === "es"
+                    ? "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_Spanish.pdf"
+                    : "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_English.pdf";
+                const fileName =
+                  language === "es"
+                    ? "CV_SergioGarciaMansilla_es.pdf"
+                    : "CV_SergioGarciaMansilla_en.pdf";
+
+                try {
+                  // Fetch the file and create a blob to force the custom filename
+                  const response = await fetch(url);
+                  const blob = await response.blob();
+                  const blobUrl = window.URL.createObjectURL(blob);
+
+                  const link = document.createElement("a");
+                  link.href = blobUrl;
+                  link.download = fileName;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+
+                  // Clean up the blob URL
+                  window.URL.revokeObjectURL(blobUrl);
+                } catch (error) {
+                  console.error("Error downloading CV:", error);
+                  // Fallback to direct link if fetch fails
+                  window.open(url, "_blank");
+                }
               }}
               className="px-8 py-4 border-2 border-accent/50 text-accent/80 font-semibold rounded-xl hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-105"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              {language === 'es' ? 'Descargar CV' : 'Download CV'}
+              {language === "es" ? "Descargar CV" : "Download CV"}
             </motion.button>
           </motion.div>
 
@@ -169,7 +199,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
                   }}
                 />
               </motion.div>
-              
+
               {/* Interactive expanding effect */}
               <motion.div
                 className="absolute inset-0 bg-accent/20 rounded-full opacity-0 group-hover:opacity-100"
@@ -183,7 +213,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
                   ease: "easeInOut",
                 }}
               />
-              
+
               {/* Pulsing dots on sides */}
               <motion.div
                 className="absolute -left-2 top-1/2 w-2 h-2 bg-accent rounded-full transform -translate-y-1/2"
@@ -209,7 +239,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
                   ease: "easeInOut",
                 }}
               />
-              
+
               {/* Hover particles */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {[...Array(6)].map((_, i) => (

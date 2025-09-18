@@ -12,6 +12,28 @@ interface ExperienceWithTranslations {
 
 export const experiencesData: ExperienceWithTranslations[] = [
   {
+    company: 'Brooktec',
+    position: {
+      es: 'Desarrollador de software',
+      en: 'Software Developer'
+    },
+    period: {
+      es: 'Septiembre 2025 - Actualidad',
+      en: 'September 2025 - Present'
+    },
+    description: {
+      es: 'Contrato de prácticas en desarrollo de software, trabajando en modalidad híbrida desde Madrid. Participando en proyectos de desarrollo utilizando tecnologías modernas y metodologías ágiles.',
+      en: 'Internship contract in software development, working in hybrid mode from Madrid. Participating in development projects using modern technologies and agile methodologies.'
+    },
+    technologies: [
+      'Software Development',
+      'Agile Methodologies',
+      'Team Collaboration',
+      'Modern Technologies'
+    ],
+    type: 'internship'
+  },
+  {
     company: 'Freelance',
     position: {
       es: 'Desarrollador de Aplicaciones Móviles',
