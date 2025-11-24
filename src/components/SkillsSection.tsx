@@ -19,7 +19,7 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
       <div className="container-custom relative z-10">
         <ScrollAnimations>
           <div className="text-center mb-16">
-            <motion.div 
+            <motion.div
               className="flex items-center justify-center mb-4"
               whileInView={{ scale: [0.8, 1.1, 1] }}
               transition={{ duration: 0.3 }}
@@ -39,7 +39,7 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
               </h2>
             </motion.div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {language === 'es' 
+              {language === 'es'
                 ? 'Tecnologías y herramientas que domino para crear soluciones robustas'
                 : 'Technologies and tools I master to create robust solutions'
               }
@@ -53,7 +53,7 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                 direction="up"
               >
                 <motion.div
-                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-accent/10 h-full hover:border-accent/30 transition-all duration-200"
+                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-accent/10 h-full hover:border-accent/30 transition-all duration-200"
                   whileHover={{
                     scale: 1.02,
                     y: -3,
@@ -61,9 +61,8 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                   }}
                 >
                   <h3 className="text-xl font-semibold mb-6 text-foreground flex items-center">
-                    <span className={`w-3 h-3 rounded-full mr-3 ${
-                      category.priority === 'high' ? 'bg-accent' : 'bg-accent/60'
-                    }`}></span>
+                    <span className={`w-3 h-3 rounded-full mr-3 ${category.priority === 'high' ? 'bg-accent' : 'bg-accent/60'
+                      }`}></span>
                     {category.name}
                   </h3>
                   <div className="flex flex-wrap gap-3">
@@ -72,14 +71,14 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                         key={skill}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ 
-                          duration: 0.2, 
+                        transition={{
+                          duration: 0.2,
                           delay: (index * 0.05) + (skillIndex * 0.02),
                           type: "spring",
                           stiffness: 300,
                           damping: 20
                         }}
-                        whileHover={{ 
+                        whileHover={{
                           scale: 1.05,
                           transition: { duration: 0.1 }
                         }}
