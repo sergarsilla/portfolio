@@ -52,7 +52,11 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
                   delay={(index + featuredCount) * 0.1}
                   direction="up"
                 >
-                  <ProjectCard {...project} index={index + featuredCount} language={language} />
+                  <ProjectCard
+                    {...project}
+                    index={index + featuredCount}
+                    language={language}
+                  />
                 </ScrollAnimations>
               ))}
             </div>
@@ -70,10 +74,13 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
             whileTap={{ scale: 0.95 }}
           >
             <span className="flex items-center gap-2">
-              {showAll 
-                ? (language === 'es' ? 'Ver menos' : 'Show less')
-                : (language === 'es' ? 'Ver más proyectos' : 'View more projects')
-              }
+              {showAll
+                ? language === "es"
+                  ? "Ver menos"
+                  : "Show less"
+                : language === "es"
+                ? "Ver más proyectos"
+                : "View more projects"}
               <motion.svg
                 className="w-5 h-5"
                 fill="none"
@@ -82,10 +89,15 @@ const ProjectGrid = ({ language }: ProjectGridProps) => {
                 animate={{ rotate: showAll ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </motion.svg>
             </span>
-            
+
             {/* Button background effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>
