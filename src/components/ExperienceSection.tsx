@@ -18,7 +18,7 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
       <div className="container-custom">
         <ScrollAnimations>
           <div className="text-center mb-16">
-            <motion.div 
+            <motion.div
               className="flex items-center justify-center mb-4"
               whileInView={{ scale: [0.8, 1.1, 1] }}
               transition={{ duration: 0.5 }}
@@ -38,7 +38,7 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
               </h2>
             </motion.div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {language === 'es' 
+              {language === 'es'
                 ? 'Mi trayectoria profesional combinando desarrollo de software con ciberseguridad'
                 : 'My professional journey combining software development with cybersecurity'
               }
@@ -52,7 +52,7 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                 direction="up"
               >
                 <motion.div
-                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-accent/10 relative overflow-hidden group hover:border-accent/30 transition-all duration-200"
+                  className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-accent/10 relative overflow-hidden group hover:border-accent/30 transition-all duration-200"
                   whileHover={{
                     scale: 1.02,
                     y: -4,
@@ -68,25 +68,25 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                     className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                     initial={false}
                   />
-                  
+
                   {/* Left border accent */}
                   <motion.div
                     className="absolute left-0 top-0 w-1 h-0 bg-gradient-to-b from-accent to-accent/50 group-hover:h-full transition-all duration-300 ease-out"
                   />
-                  
+
                   {/* Subtle shine effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
                   />
-                  
+
                   {/* Content */}
                   <div className="relative z-10">
-                    <motion.h3 
+                    <motion.h3
                       className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors duration-200"
                     >
                       {exp.position}
                     </motion.h3>
-                    <motion.h4 
+                    <motion.h4
                       className="text-lg text-accent mb-2 font-medium"
                     >
                       {exp.company}
@@ -103,13 +103,13 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                           key={tech}
                           initial={{ opacity: 0, scale: 0 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ 
+                          transition={{
                             delay: techIndex * 0.03,
                             type: "spring",
                             stiffness: 300,
                             damping: 20
                           }}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.03,
                             transition: { duration: 0.15 }
                           }}

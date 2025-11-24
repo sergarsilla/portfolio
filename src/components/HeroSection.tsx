@@ -54,7 +54,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
   };
 
   return (
-    <section className="min-h-screen relative overflow-hidden flex items-center bg-background">
+    <section className="min-h-[100dvh] relative overflow-x-hidden flex items-center bg-background py-20 md:py-0">
       <div className="absolute inset-0">
         {!reducedMotion && <Background3D />}
       </div>
@@ -71,7 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-normal md:leading-tight break-words"
           >
             Sergio García Mansilla
           </motion.h1>
