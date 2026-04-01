@@ -2,138 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar - cyber theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff41;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc33;
+}
+
 @layer base {
   :root {
-    /* Light theme (improved) */
-    --background: 220 20% 98%;
-    --foreground: 220 13% 15%;
-    --card: 220 20% 100%;
-    --card-foreground: 220 13% 15%;
-    --popover: 220 20% 98%;
-    --popover-foreground: 220 13% 15%;
-    --primary: 220 13% 15%;
-    --primary-foreground: 220 20% 98%;
-    --secondary: 220 20% 94%;
-    --secondary-foreground: 220 13% 15%;
-    --muted: 220 20% 94%;
-    --muted-foreground: 220 13% 35%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 220 20% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 262 83% 58%;
-    --radius: 0.75rem;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark theme (improved readability) */
-    --background: 220 15% 12%;
-    --foreground: 220 9% 95%;
-    --card: 220 15% 15%;
-    --card-foreground: 220 9% 95%;
-    --popover: 220 15% 12%;
-    --popover-foreground: 220 9% 95%;
-    --primary: 220 9% 95%;
-    --primary-foreground: 220 15% 12%;
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 220 9% 95%;
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 9% 75%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 255 255 255;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 25%;
-    --input: 220 15% 25%;
-    --ring: 262 83% 58%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    @apply bg-background;
-    width: 100%;
-    min-height: 100vh;
-    font-display: swap;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      "Roboto", "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-display: swap;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-    font-display: swap;
-  }
-
-  /* Performance optimizations */
-  img, video {
-    max-width: 100%;
-    height: auto;
-    loading: lazy;
-  }
-
-  /* Improve font loading performance */
-  @font-face {
-    font-family: "Inter";
-    font-display: swap;
-  }
-
-  /* Reduce layout shifts */
-  .font-mono {
-    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", "Consolas",
-      "Monaco", monospace;
-    font-display: swap;
-  }
-
-  /* Prevent layout shifts during loading */
-  .container-custom {
-    min-height: 1px; /* Prevent collapse */
-  }
-
-  /* Optimize animations for performance */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
-  /* Improve button focus states for accessibility */
-  button:focus-visible {
-    outline: 2px solid hsl(var(--accent));
-    outline-offset: 2px;
   }
 }
 
+/* Cyber utilities */
 @layer components {
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -141,37 +85,37 @@
 
   .section-spacing {
     @apply py-20 lg:py-24;
-    scroll-snap-align: start;
-  }
-
-  .scroll-container {
-    scroll-snap-type: y proximity;
-    overflow-y: auto;
-  }
-
-  .font-mono {
-    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
-  }
-
-  .text-gradient {
-    @apply bg-gradient-to-r from-accent via-yellow-400 to-accent bg-clip-text text-transparent;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Animations */
+body {
+  font-family: "Inter", sans-serif;
 }
 
-::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
+.font-mono {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
-::-webkit-scrollbar-thumb {
-  background: hsl(45 100% 50%);
-  border-radius: 4px;
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(45 100% 45%);
+@keyframes pulse-fast {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1.5s infinite;
+}
+
+/* Matrix mode */
+.matrix-mode {
+  filter: hue-rotate(240deg) brightness(1.2);
 }
