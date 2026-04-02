@@ -34,17 +34,18 @@ export interface TranslationContent {
     programmingLanguages: string;
     frameworksLibraries: string;
     databases: string;
-    toolsOthers: string;
+    cloudDevOps: string;
     cybersecurity: string;
+    methodologies: string;
   };
 }
 
 export const translations: Record<Language, TranslationContent> = {
   es: {
     hero: {
-      title: 'Ingeniero Informático | Desarrollo de Software & Ciberseguridad',
-      subtitle: 'Ingeniero Informático / Desarrollador',
-      description: 'Ingeniero Informático por la Universidad Politécnica de Madrid con experiencia profesional en el desarrollo de software. Mi trayectoria incluye la participación en el ciclo de vida completo de proyectos de aplicaciones móviles y el trabajo en equipos que utilizan metodologías ágiles. Actualmente, complemento mi formación técnica cursando el Máster Profesional en Dirección de Ciberseguridad y Hacking Ético en EIP International Business School.'
+      title: 'Ingeniero Informático | Ciberseguridad & Desarrollo de Software',
+      subtitle: 'Ingeniero Informático / Técnico en Ciberseguridad',
+      description: 'Ingeniero Informático por la Universidad Politécnica de Madrid con experiencia profesional en desarrollo de software y ciberseguridad. Actualmente cursando el Máster Profesional en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva en EIP International Business School. Especializado en seguridad ofensiva, hardening de sistemas y desarrollo de aplicaciones móviles.'
     },
     navigation: {
       experience: 'Experiencia',
@@ -74,15 +75,16 @@ export const translations: Record<Language, TranslationContent> = {
       programmingLanguages: 'Lenguajes de Programación',
       frameworksLibraries: 'Frameworks y Librerías',
       databases: 'Bases de Datos',
-      toolsOthers: 'Herramientas y Otros',
-      cybersecurity: 'Ciberseguridad'
+      cloudDevOps: 'Cloud y DevOps',
+      cybersecurity: 'Ciberseguridad',
+      methodologies: 'Metodologías'
     }
   },
   en: {
     hero: {
-      title: 'Computer Engineer | Software Development & Cybersecurity',
-      subtitle: 'Computer Engineer / Developer',
-      description: 'Computer Engineer from Universidad Politécnica de Madrid with professional experience in software development. My background includes participation in the complete lifecycle of mobile application projects and working in teams using agile methodologies. Currently, I am complementing my technical training by pursuing a Professional Master\'s in Cybersecurity Management and Ethical Hacking at EIP International Business School.'
+      title: 'Computer Engineer | Cybersecurity & Software Development',
+      subtitle: 'Computer Engineer / Cybersecurity Technician',
+      description: 'Computer Engineer from Universidad Politécnica de Madrid with professional experience in software development and cybersecurity. Currently pursuing a Professional Master\'s in Cybersecurity Management, Ethical Hacking and Offensive Security at EIP International Business School. Specialized in offensive security, system hardening and mobile application development.'
     },
     navigation: {
       experience: 'Experience',
@@ -112,8 +114,9 @@ export const translations: Record<Language, TranslationContent> = {
       programmingLanguages: 'Programming Languages',
       frameworksLibraries: 'Frameworks & Libraries',
       databases: 'Databases',
-      toolsOthers: 'Tools & Others',
-      cybersecurity: 'Cybersecurity'
+      cloudDevOps: 'Cloud & DevOps',
+      cybersecurity: 'Cybersecurity',
+      methodologies: 'Methodologies'
     }
   }
 };

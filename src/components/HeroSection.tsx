@@ -155,8 +155,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
           >
             <span className="text-gradient-cyber">
               {language === "es"
-                ? "Ingeniero Informático | Desarrollo de Software & Ciberseguridad"
-                : "Computer Engineer | Software Development & Cybersecurity"}
+                ? "Ingeniero Informático | Ciberseguridad & Desarrollo de Software"
+                : "Computer Engineer | Cybersecurity & Software Development"}
             </span>
           </motion.h2>
 
@@ -165,8 +165,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12"
           >
             {language === "es"
-              ? "Ingeniero Informático por la UPM, especializado en desarrollo móvil y arquitectura de software. Estudiante de Máster en Ciberseguridad y Hacking Ético."
-              : "Computer Engineer from UPM, specialized in mobile development and software architecture. Master's student in Cybersecurity and Ethical Hacking."}
+              ? "Ingeniero Informático por la UPM con experiencia profesional en desarrollo de software y ciberseguridad. Actualmente cursando el Máster Profesional en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva en EIP International Business School."
+              : "Computer Engineer from UPM with professional experience in software development and cybersecurity. Currently pursuing a Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security at EIP International Business School."}
           </motion.p>
 
           <motion.div

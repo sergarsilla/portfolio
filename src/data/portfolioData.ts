@@ -14,22 +14,53 @@ export const experiencesData: ExperienceWithTranslations[] = [
   {
     company: 'Brooktec',
     position: {
-      es: 'Desarrollador de software',
+      es: 'Técnico en Ingeniería de Ciberseguridad y Sistemas',
+      en: 'Cybersecurity and Systems Engineering Technician'
+    },
+    period: {
+      es: 'Enero 2026 - Actualidad',
+      en: 'January 2026 - Present'
+    },
+    description: {
+      es: 'Enfoque en la securización de infraestructuras y la detección proactiva de vulnerabilidades. Seguridad Ofensiva: Ejecución de pruebas de penetración Black Box y White Box sobre activos críticos, identificando vectores de ataque y reportando hallazgos técnicos para su remediación. Defensa y Hardening: Implementación de políticas de endurecimiento en entornos Linux y Mac, reduciendo la superficie de exposición de la infraestructura. Seguridad Cloud: Auditoría y validación de seguridad en entornos distribuidos de AWS, Azure y Google Cloud, asegurando la correcta configuración de instancias EC2 y servicios gestionados. Monitorización (SOC): Gestión activa de alertas mediante SIEM (Wazuh) y protección de capas de aplicación con WAF (Wordfence), garantizando una respuesta ágil ante incidentes de seguridad.',
+      en: 'Focus on infrastructure security and proactive vulnerability detection. Offensive Security: Execution of Black Box and White Box penetration tests on critical assets, identifying attack vectors and reporting technical findings for remediation. Defense and Hardening: Implementation of hardening policies in Linux and Mac environments, reducing infrastructure exposure surface. Cloud Security: Security audit and validation in distributed AWS, Azure and Google Cloud environments, ensuring proper configuration of EC2 instances and managed services. Monitoring (SOC): Active alert management through SIEM (Wazuh) and application layer protection with WAF (Wordfence), ensuring agile response to security incidents.'
+    },
+    technologies: [
+      'Penetration Testing',
+      'Black Box Testing',
+      'White Box Testing',
+      'Linux Hardening',
+      'AWS Security',
+      'Azure Security',
+      'Google Cloud',
+      'SIEM (Wazuh)',
+      'WAF (Wordfence)',
+      'SOC',
+      'DevSecOps'
+    ],
+    type: 'full-time'
+  },
+  {
+    company: 'Brooktec',
+    position: {
+      es: 'Desarrollador de Software',
       en: 'Software Developer'
     },
     period: {
-      es: 'Septiembre 2025 - Actualidad',
-      en: 'September 2025 - Present'
+      es: 'Septiembre 2025 - Enero 2026',
+      en: 'September 2025 - January 2026'
     },
     description: {
-      es: 'Contrato de prácticas en desarrollo de software, trabajando en modalidad híbrida desde Madrid. Participando en proyectos de desarrollo utilizando tecnologías modernas y metodologías ágiles.',
-      en: 'Internship contract in software development, working in hybrid mode from Madrid. Participating in development projects using modern technologies and agile methodologies.'
+      es: 'Desarrollo de aplicaciones móviles utilizando herramientas de Inteligencia Artificial. Integración de protocolos de Ciberseguridad en pipelines CI/CD (DevSecOps).',
+      en: 'Development of mobile applications using Artificial Intelligence tools. Integration of Cybersecurity protocols in CI/CD pipelines (DevSecOps).'
     },
     technologies: [
-      'Software Development',
-      'Agile Methodologies',
-      'Team Collaboration',
-      'Modern Technologies'
+      'Mobile Development',
+      'AI Tools',
+      'DevSecOps',
+      'CI/CD',
+      'React Native',
+      'Flutter'
     ],
     type: 'internship'
   },
@@ -44,8 +75,8 @@ export const experiencesData: ExperienceWithTranslations[] = [
       en: 'June 2023 - Present'
     },
     description: {
-      es: 'Gestioné el ciclo de vida completo de proyectos de aplicaciones móviles para clientes, desde la toma de requisitos hasta el despliegue en Google Play Store y Apple App Store. Desarrollé soluciones multiplataforma a medida utilizando React Native y TypeScript, integrando servicios backend con Firebase. Demostré una comunicación eficaz y habilidades de consultoría, traduciendo las necesidades del cliente en especificaciones técnicas y productos funcionales.',
-      en: 'Managed the complete lifecycle of mobile application projects for clients, from requirements gathering to deployment on Google Play Store and Apple App Store. Developed custom cross-platform solutions using React Native and TypeScript, integrating backend services with Firebase. Demonstrated effective communication and consulting skills, translating client needs into technical specifications and functional products.'
+      es: 'Gestión del ciclo de vida completo de proyectos de aplicaciones móviles para clientes, desde la toma de requisitos hasta el despliegue en Google Play Store y Apple App Store. Desarrollo de soluciones multiplataforma a medida utilizando React Native y TypeScript, integrando servicios backend con Firebase. Comunicación eficaz y habilidades de consultoría, traduciendo las necesidades del cliente en especificaciones técnicas y productos funcionales.',
+      en: 'Management of the complete lifecycle of mobile application projects for clients, from requirements gathering to deployment on Google Play Store and Apple App Store. Development of custom cross-platform solutions using React Native and TypeScript, integrating backend services with Firebase. Effective communication and consulting skills, translating client needs into technical specifications and functional products.'
     },
     technologies: [
       'React Native',
@@ -61,16 +92,16 @@ export const experiencesData: ExperienceWithTranslations[] = [
   {
     company: 'ONGAWA Ingeniería para el Desarrollo Humano',
     position: {
-      es: 'Ingeniero Informático',
-      en: 'Computer Engineer'
+      es: 'Ingeniero de Software',
+      en: 'Software Engineer'
     },
     period: {
       es: 'Febrero 2025 - Mayo 2025',
       en: 'February 2025 - May 2025'
     },
     description: {
-      es: 'Lideré el desarrollo de una aplicación móvil Android con Kotlin y Jetpack Compose para evaluar la vulnerabilidad climática en servicios rurales de agua. Implementé una arquitectura de software limpia (Clean Architecture), mejorando la mantenibilidad y escalabilidad del código base. Instauré el uso de Git Flow como flujo de trabajo para el control de versiones, optimizando la colaboración y reduciendo los conflictos de código en el equipo. Participé activamente en la planificación y seguimiento del proyecto bajo la metodología SCRUM, asegurando entregas de valor continuas.',
-      en: 'Led the development of an Android mobile application with Kotlin and Jetpack Compose to assess climate vulnerability in rural water services. Implemented clean software architecture (Clean Architecture), improving code base maintainability and scalability. Established the use of Git Flow as version control workflow, optimizing collaboration and reducing code conflicts in the team. Actively participated in project planning and tracking under SCRUM methodology, ensuring continuous value delivery.'
+      es: 'Liderazgo en el desarrollo de una aplicación móvil Android con Kotlin y Jetpack Compose para evaluar la vulnerabilidad climática en servicios rurales de agua. Implementación de arquitectura de software limpia (Clean Architecture), mejorando la mantenibilidad y escalabilidad del código base. Establecimiento del uso de Git Flow como flujo de trabajo para el control de versiones, optimizando la colaboración y reduciendo los conflictos de código en el equipo. Participación activa en la planificación y seguimiento del proyecto bajo la metodología SCRUM, asegurando entregas de valor continuas.',
+      en: 'Leadership in the development of an Android mobile application with Kotlin and Jetpack Compose to assess climate vulnerability in rural water services. Implementation of clean software architecture (Clean Architecture), improving code base maintainability and scalability. Establishment of Git Flow as version control workflow, optimizing collaboration and reducing code conflicts in the team. Active participation in project planning and tracking under SCRUM methodology, ensuring continuous value delivery.'
     },
     technologies: [
       'Kotlin',
@@ -247,11 +278,12 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
     nameKey: 'frameworksLibraries',
     skills: [
       'React',
-      'React-Native',
+      'React Native',
       'Node.js',
       'Express',
       'Android',
       'Jetpack Compose',
+      'Flutter',
       'CUDA',
       'OpenMP'
     ],
@@ -263,28 +295,32 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
     priority: 'medium'
   },
   {
-    nameKey: 'toolsOthers',
+    nameKey: 'cloudDevOps',
     skills: [
+      'AWS',
+      'Azure',
+      'Google Cloud',
+      'CI/CD',
+      'DevSecOps',
       'Git',
       'GitLab',
-      'Linux',
-      'Scrum',
-      'REST APIs',
-      'AWS',
-      'Clean Architecture',
-      'Domain Driven Design',
-      'Multithreading',
-      'GPU Programming'
+      'Git Flow'
     ],
-    priority: 'medium'
+    priority: 'high'
   },
   {
     nameKey: 'cybersecurity',
     skills: [
-      'Pentesting',
+      'Penetration Testing',
+      'Black Box Testing',
+      'White Box Testing',
       'Ethical Hacking',
+      'Linux Hardening',
+      'Network Security',
+      'SIEM (Wazuh)',
+      'WAF (Wordfence)',
+      'SOC',
       'Vulnerability Assessment',
-      'Web Application Security',
       'Burp Suite',
       'Nmap',
       'Metasploit',
@@ -292,6 +328,18 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
       'OWASP Top 10'
     ],
     priority: 'high'
+  },
+  {
+    nameKey: 'methodologies',
+    skills: [
+      'Clean Architecture',
+      'Domain Driven Design',
+      'SCRUM',
+      'Agile',
+      'Multithreading',
+      'GPU Programming'
+    ],
+    priority: 'medium'
   }
 ];
 
