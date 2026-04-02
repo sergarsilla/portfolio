@@ -38,7 +38,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ language }) => {
   ];
 
   return (
-    <section id="contact" className="section-spacing bg-gradient-to-br from-secondary/30 to-secondary/10 relative overflow-x-hidden">
+    <section id="contact" className="section-spacing bg-gradient-to-br from-secondary/30 to-secondary/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
@@ -60,7 +60,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ language }) => {
           </div>
 
           {/* Contact Form */}
-          <div className="mb-16">
+          <div className="mb-12">
             <ContactForm language={language} />
           </div>
 
@@ -71,7 +71,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ language }) => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 pb-8">
             {contactLinks.map((link, index) => (
               <ScrollAnimations
                 key={link.name}

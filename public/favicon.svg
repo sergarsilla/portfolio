@@ -1,0 +1,29 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0a0e27"/>
+  
+  <!-- Border glow -->
+  <rect x="1" y="1" width="62" height="62" rx="11" stroke="url(#glow)" stroke-width="2"/>
+  
+  <!-- Terminal window dots -->
+  <circle cx="8" cy="8" r="2" fill="#ef4444"/>
+  <circle cx="15" cy="8" r="2" fill="#eab308"/>
+  <circle cx="22" cy="8" r="2" fill="#22c55e"/>
+  
+  <!-- SG text -->
+  <text x="32" y="42" font-family="monospace" font-size="24" font-weight="bold" fill="#22c55e" text-anchor="middle">SG</text>
+  
+  <!-- Cursor (moved to the right) -->
+  <rect x="50" y="26" width="3" height="20" fill="#22c55e">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.5" />
+      <stop offset="50%" style="stop-color:#00d9ff;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+</svg>

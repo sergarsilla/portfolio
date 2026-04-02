@@ -1,9 +1,9 @@
 // Simple service worker for caching
-const CACHE_NAME = 'sergarsilla-portfolio-v1';
+const CACHE_NAME = 'sergarsilla-portfolio-v2';
 const urlsToCache = [
   '/',
   '/manifest.json',
-  '/favicon.ico'
+  '/favicon.svg'
 ];
 
 self.addEventListener('install', (event) => {
