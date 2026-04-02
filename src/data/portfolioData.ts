@@ -349,15 +349,17 @@ export const getSkillCategories = (language: Language): SkillCategory[] => {
       programmingLanguages: 'Lenguajes de Programación',
       frameworksLibraries: 'Frameworks y Librerías',
       databases: 'Bases de Datos',
-      toolsOthers: 'Herramientas y Otros',
-      cybersecurity: 'Ciberseguridad'
+      cloudDevOps: 'Cloud & DevOps',
+      cybersecurity: 'Ciberseguridad',
+      methodologies: 'Metodologías & Arquitectura'
     },
     en: {
       programmingLanguages: 'Programming Languages',
       frameworksLibraries: 'Frameworks & Libraries',
       databases: 'Databases',
-      toolsOthers: 'Tools & Others',
-      cybersecurity: 'Cybersecurity'
+      cloudDevOps: 'Cloud & DevOps',
+      cybersecurity: 'Cybersecurity',
+      methodologies: 'Methodologies & Architecture'
     }
   };
 

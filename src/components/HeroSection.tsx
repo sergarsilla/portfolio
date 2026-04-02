@@ -132,7 +132,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
               <div className="terminal-dot bg-red-500"></div>
               <div className="terminal-dot bg-yellow-500"></div>
               <div className="terminal-dot bg-green-500"></div>
-              <span className="text-xs font-mono ml-4">sergio@portfolio:~$</span>
+              <span className="text-xs font-mono ml-4">sergarsilla@portfolio:~$</span>
             </div>
             <div className="p-6 bg-card/50 backdrop-blur-sm">
               <div className="font-mono text-left space-y-2">
@@ -149,16 +149,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             </div>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             variants={itemVariants}
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8"
+            className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8 space-y-2"
           >
-            <span className="text-gradient-cyber">
-              {language === "es"
-                ? "Ingeniero Informático | Ciberseguridad & Desarrollo de Software"
-                : "Computer Engineer | Cybersecurity & Software Development"}
-            </span>
-          </motion.h2>
+            <div className="text-gradient-cyber">
+              {language === "es" ? "Ingeniero Informático" : "Computer Engineer"}
+            </div>
+            <div className="text-gradient-cyber">
+              {language === "es" ? "Ciberseguridad & Sistemas" : "Cybersecurity & Systems"}
+            </div>
+            <div className="text-gradient-cyber">
+              {language === "es" ? "Desarrollo de Software" : "Software Development"}
+            </div>
+          </motion.div>
 
           <motion.p
             variants={itemVariants}
@@ -258,18 +262,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             </motion.button>
           </motion.div>
 
-          {/* Hint for terminal */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-12 text-sm text-muted-foreground font-mono"
-          >
-            <p className="opacity-50 hover:opacity-100 transition-opacity">
-              💡 Tip: Press <kbd className="px-2 py-1 bg-secondary rounded text-xs">Ctrl</kbd> + 
-              <kbd className="px-2 py-1 bg-secondary rounded text-xs mx-1">Shift</kbd> + 
-              <kbd className="px-2 py-1 bg-secondary rounded text-xs">K</kbd> for a surprise
-            </p>
-          </motion.div>
-
           {/* Scroll indicator */}
           <motion.div
             variants={itemVariants}
@@ -309,10 +301,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
             linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
           background-size: 40px 40px;
-        }
-        
-        kbd {
-          box-shadow: 0 2px 0 1px hsl(var(--border));
         }
       `}</style>
     </section>

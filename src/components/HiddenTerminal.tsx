@@ -15,7 +15,7 @@ const HiddenTerminal = () => {
       input: '',
       output: [
         '╔═══════════════════════════════════════════════════════╗',
-        '║  Welcome to Sergio\'s Terminal v1.0                   ║',
+        '║  Welcome to sergarsilla\'s Terminal v1.0              ║',
         '║  Type "help" for available commands                  ║',
         '╚═══════════════════════════════════════════════════════╝',
         ''
@@ -238,7 +238,7 @@ const HiddenTerminal = () => {
             <div className="terminal-dot bg-green-500"></div>
             <div className="flex-1 flex items-center justify-center gap-2">
               <TerminalIcon className="w-4 h-4" />
-              <span className="text-sm font-mono">sergio@portfolio:~$</span>
+              <span className="text-sm font-mono">sergarsilla@portfolio:~$</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -257,7 +257,7 @@ const HiddenTerminal = () => {
               <div key={i} className="mb-2">
                 {cmd.input && (
                   <div className="flex items-center gap-2 text-accent">
-                    <span className="text-muted-foreground">sergio@portfolio:~$</span>
+                    <span className="text-muted-foreground">sergarsilla@portfolio:~$</span>
                     <span>{cmd.input}</span>
                   </div>
                 )}
@@ -271,7 +271,7 @@ const HiddenTerminal = () => {
 
             {/* Input Line */}
             <form onSubmit={handleSubmit} className="flex items-center gap-2">
-              <span className="text-muted-foreground">sergio@portfolio:~$</span>
+              <span className="text-muted-foreground">sergarsilla@portfolio:~$</span>
               <input
                 ref={inputRef}
                 type="text"

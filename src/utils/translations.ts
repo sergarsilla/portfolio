@@ -75,9 +75,9 @@ export const translations: Record<Language, TranslationContent> = {
       programmingLanguages: 'Lenguajes de Programación',
       frameworksLibraries: 'Frameworks y Librerías',
       databases: 'Bases de Datos',
-      cloudDevOps: 'Cloud y DevOps',
+      cloudDevOps: 'Cloud & DevOps',
       cybersecurity: 'Ciberseguridad',
-      methodologies: 'Metodologías'
+      methodologies: 'Metodologías & Arquitectura'
     }
   },
   en: {
@@ -116,7 +116,7 @@ export const translations: Record<Language, TranslationContent> = {
       databases: 'Databases',
       cloudDevOps: 'Cloud & DevOps',
       cybersecurity: 'Cybersecurity',
-      methodologies: 'Methodologies'
+      methodologies: 'Methodologies & Architecture'
     }
   }
 };
