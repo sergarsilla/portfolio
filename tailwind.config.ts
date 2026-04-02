@@ -43,6 +43,8 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          secondary: "hsl(var(--accent-secondary))",
+          tertiary: "hsl(var(--accent-tertiary))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

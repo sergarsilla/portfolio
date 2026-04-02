@@ -32,10 +32,8 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
               >
                 <Code2 className="w-6 h-6 text-background" />
               </motion.div>
-              <h2 className="text-3xl md:text-4xl font-bold">
-                <span className="text-gradient">
-                  {t.sections.technologiesSkills}
-                </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient-cyber">
+                {t.sections.technologiesSkills}
               </h2>
             </motion.div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -60,10 +58,10 @@ const SkillsSection = ({ language }: SkillsSectionProps) => {
                     transition: { duration: 0.1 }
                   }}
                 >
-                  <h3 className="text-xl font-semibold mb-6 text-foreground flex items-center">
+                  <h3 className="text-xl font-bold mb-6 text-foreground flex items-center">
                     <span className={`w-3 h-3 rounded-full mr-3 ${category.priority === 'high' ? 'bg-accent' : 'bg-accent/60'
                       }`}></span>
-                    {category.name}
+                    <span className="text-foreground">{category.name}</span>
                   </h3>
                   <div className="flex flex-wrap gap-3">
                     {category.skills.map((skill, skillIndex) => (
