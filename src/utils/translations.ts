@@ -61,7 +61,7 @@ export const translations: Record<Language, TranslationContent> = {
     },
     contact: {
       title: 'Contacto Profesional',
-      description: 'Disponible para oportunidades laborales en desarrollo de software y ciberseguridad. Experiencia en proyectos empresariales y metodologías ágiles.',
+      description: 'Disponible para oportunidades laborales en ciberseguridad y desarrollo de software.',
       email: 'Contacto Directo',
       linkedin: 'Perfil Profesional',
       github: 'Repositorios'
@@ -100,7 +100,7 @@ export const translations: Record<Language, TranslationContent> = {
     },
     contact: {
       title: 'Professional Contact',
-      description: 'Available for employment opportunities in software development and cybersecurity. Experience in enterprise projects and agile methodologies.',
+      description: 'Available for employment opportunities in cybersecurity and software development.',
       email: 'Direct Contact',
       linkedin: 'Professional Profile',
       github: 'Code Repositories'
