@@ -12,11 +12,6 @@
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
-    },
-    {
-      "src": "/favicon.ico",
-      "sizes": "48x48",
-      "type": "image/x-icon"
     }
   ],
   "categories": ["portfolio", "developer", "cybersecurity", "technology"],

@@ -3,8 +3,7 @@ const CACHE_NAME = 'sergarsilla-portfolio-v2';
 const urlsToCache = [
   '/',
   '/manifest.json',
-  '/favicon.svg',
-  '/favicon.ico'
+  '/favicon.svg'
 ];
 
 self.addEventListener('install', (event) => {
