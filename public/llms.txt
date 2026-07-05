@@ -1,0 +1,16 @@
+# Sergio García Mansilla — Portfolio
+
+> Computer Engineer (Universidad Politécnica de Madrid) and Cybersecurity & Systems Technician at Brooktec (Madrid, Spain). Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security (EIP International Business School, 2026). Focused on defensive security: systems administration and hardening (Linux/macOS), SIEM (Wazuh), SOC operations, cloud security (AWS, Azure, GCP) and ISO 27001 compliance, with a solid software development background (TypeScript, React Native, Kotlin, Python).
+
+## Profile
+
+- [Portfolio](https://sergarsilla.is-a.dev): experience, projects and skills, in Spanish and English
+- [GitHub](https://github.com/sergarsilla)
+- [LinkedIn](https://linkedin.com/in/sergarsilla)
+- Contact: sergarsilla@gmail.com
+
+## Highlighted projects
+
+- [wazuh-anomaly-detector](https://github.com/sergarsilla/wazuh-anomaly-detector): real-time unsupervised anomaly detection for the Wazuh SIEM using a PyTorch autoencoder (0.1% measured false-positive rate, validated on production infrastructure). Open source, Apache 2.0. Master's Thesis project.
+- [wazuh-llm-triage](https://github.com/sergarsilla/wazuh-llm-triage): SOC level-1 alert triage for Wazuh with a fully local LLM + RAG (Ollama, Qdrant), structured verdicts and bounded active response. Open source, Apache 2.0. Master's Thesis project.
+- Cross-platform mobile apps built with React Native/Expo and Firebase, published on Google Play and the App Store.
