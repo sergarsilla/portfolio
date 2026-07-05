@@ -1,11 +1,11 @@
 {
   "name": "Sergio García Mansilla - Portfolio",
   "short_name": "sergarsilla",
-  "description": "Ingeniero Informático especializado en Ciberseguridad y Desarrollo de Software",
+  "description": "Ingeniero Informático y Técnico en Ciberseguridad y Sistemas",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0e27",
-  "theme_color": "#22c55e",
+  "background_color": "#0c0c0e",
+  "theme_color": "#41c889",
   "orientation": "portrait-primary",
   "icons": [
     {
