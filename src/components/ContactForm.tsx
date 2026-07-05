@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, CheckCircle, Loader2, Send } from "lucide-react";
 import { Language } from "../hooks/useLanguage";
 
 interface ContactFormProps {
@@ -18,87 +17,66 @@ interface FormStatus {
   message: string;
 }
 
+const translations = {
+  es: {
+    name: "Nombre",
+    namePlaceholder: "Nombre y apellidos",
+    email: "Email",
+    emailPlaceholder: "nombre@empresa.com",
+    message: "Mensaje",
+    messagePlaceholder: "Cuéntame sobre tu proyecto, oportunidad o consulta...",
+    send: "Enviar mensaje",
+    sending: "Enviando...",
+    success: "Mensaje enviado. Te responderé pronto.",
+    error: "No se pudo enviar. Inténtalo de nuevo.",
+    required: "Este campo es obligatorio",
+    invalidEmail: "Email inválido",
+  },
+  en: {
+    name: "Name",
+    namePlaceholder: "First and last name",
+    email: "Email",
+    emailPlaceholder: "name@company.com",
+    message: "Message",
+    messagePlaceholder: "Tell me about your project, opportunity or inquiry...",
+    send: "Send message",
+    sending: "Sending...",
+    success: "Message sent. I'll get back to you soon.",
+    error: "Failed to send. Please try again.",
+    required: "This field is required",
+    invalidEmail: "Invalid email",
+  },
+};
+
+const inputClasses =
+  "w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none transition-colors duration-150 disabled:opacity-60";
+
 const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [status, setStatus] = useState<FormStatus>({
-    type: "idle",
-    message: "",
-  });
-
-  const translations = {
-    es: {
-      title: "Inicia una conversación",
-      subtitle: "Cuéntame sobre tu proyecto u oportunidad",
-      name: "Nombre completo",
-      email: "Email profesional",
-      message: "Mensaje",
-      messagePlaceholder:
-        "Describe tu proyecto, oportunidad laboral o consulta...",
-      send: "Enviar mensaje",
-      sending: "Enviando...",
-      success: "¡Mensaje enviado! Te responderé pronto.",
-      error: "Error al enviar. Inténtalo de nuevo.",
-      required: "Este campo es obligatorio",
-      invalidEmail: "Email inválido",
-    },
-    en: {
-      title: "Start a conversation",
-      subtitle: "Tell me about your project or opportunity",
-      name: "Full name",
-      email: "Professional email",
-      message: "Message",
-      messagePlaceholder:
-        "Describe your project, job opportunity or inquiry...",
-      send: "Send message",
-      sending: "Sending...",
-      success: "Message sent! I'll get back to you soon.",
-      error: "Failed to send. Please try again.",
-      required: "This field is required",
-      invalidEmail: "Invalid email",
-    },
-  };
+  const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<FormStatus>({ type: "idle", message: "" });
 
   const t = translations[language];
 
   const validateForm = (): boolean => {
-    if (!formData.name.trim()) {
+    if (!formData.name.trim() || !formData.message.trim() || !formData.email.trim()) {
       setStatus({ type: "error", message: t.required });
       return false;
     }
-
-    if (!formData.email.trim()) {
-      setStatus({ type: "error", message: t.required });
-      return false;
-    }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setStatus({ type: "error", message: t.invalidEmail });
       return false;
     }
-
-    if (!formData.message.trim()) {
-      setStatus({ type: "error", message: t.required });
-      return false;
-    }
-
     return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     setStatus({ type: "loading", message: t.sending });
 
     try {
-      // Usar nuestra API principal
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -127,112 +105,85 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="max-w-2xl mx-auto"
-    >
-      <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-foreground mb-2">{t.title}</h3>
-        <p className="text-muted-foreground">{t.subtitle}</p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.div whileFocus={{ scale: 1.02 }} className="space-y-2">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-foreground"
-            >
-              {t.name}
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={formData.name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-              className="w-full px-4 py-3 bg-background border-2 border-accent/20 rounded-xl focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-300 text-foreground placeholder:text-muted-foreground"
-              placeholder="John Doe"
-              disabled={status.type === "loading"}
-            />
-          </motion.div>
-
-          <motion.div whileFocus={{ scale: 1.02 }} className="space-y-2">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-foreground"
-            >
-              {t.email}
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              onChange={(e) => handleInputChange("email", e.target.value)}
-              className="w-full px-4 py-3 bg-background border-2 border-accent/20 rounded-xl focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-300 text-foreground placeholder:text-muted-foreground"
-              placeholder="john@company.com"
-              disabled={status.type === "loading"}
-            />
-          </motion.div>
-        </div>
-
-        <motion.div whileFocus={{ scale: 1.01 }} className="space-y-2">
-          <label
-            htmlFor="message"
-            className="block text-sm font-medium text-foreground"
-          >
-            {t.message}
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-medium text-foreground">
+            {t.name}
           </label>
-          <textarea
-            id="message"
-            rows={6}
-            value={formData.message}
-            onChange={(e) => handleInputChange("message", e.target.value)}
-            className="w-full px-4 py-3 bg-background border-2 border-accent/20 rounded-xl focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-300 text-foreground placeholder:text-muted-foreground resize-none"
-            placeholder={t.messagePlaceholder}
+          <input
+            type="text"
+            id="name"
+            value={formData.name}
+            onChange={(e) => handleInputChange("name", e.target.value)}
+            className={inputClasses}
+            placeholder={t.namePlaceholder}
             disabled={status.type === "loading"}
           />
-        </motion.div>
+        </div>
 
-        {status.message && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`flex items-center gap-2 p-4 rounded-xl ${
-              status.type === "success"
-                ? "bg-green-500/10 text-green-500 border border-green-500/20"
-                : status.type === "error"
-                ? "bg-red-500/10 text-red-500 border border-red-500/20"
-                : "bg-accent/10 text-accent border border-accent/20"
-            }`}
-          >
-            {status.type === "success" && <CheckCircle className="w-5 h-5" />}
-            {status.type === "error" && <AlertCircle className="w-5 h-5" />}
-            {status.type === "loading" && (
-              <Loader2 className="w-5 h-5 animate-spin" />
-            )}
-            <span className="text-sm font-medium">{status.message}</span>
-          </motion.div>
-        )}
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium text-foreground">
+            {t.email}
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={formData.email}
+            onChange={(e) => handleInputChange("email", e.target.value)}
+            className={inputClasses}
+            placeholder={t.emailPlaceholder}
+            disabled={status.type === "loading"}
+          />
+        </div>
+      </div>
 
-        <motion.button
-          type="submit"
+      <div className="space-y-2">
+        <label htmlFor="message" className="block text-sm font-medium text-foreground">
+          {t.message}
+        </label>
+        <textarea
+          id="message"
+          rows={6}
+          value={formData.message}
+          onChange={(e) => handleInputChange("message", e.target.value)}
+          className={`${inputClasses} resize-none`}
+          placeholder={t.messagePlaceholder}
           disabled={status.type === "loading"}
-          whileHover={{ scale: 1.02, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-xl hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+        />
+      </div>
+
+      {status.message && (
+        <div
+          role="status"
+          className={`flex items-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium ${
+            status.type === "success"
+              ? "border-accent/30 bg-accent/10 text-accent"
+              : status.type === "error"
+                ? "border-destructive/30 bg-destructive/10 text-destructive"
+                : "border-border bg-secondary/50 text-muted-foreground"
+          }`}
         >
-          {status.type === "loading" ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
-            <Send className="w-5 h-5" />
-          )}
-          {status.type === "loading" ? t.sending : t.send}
-        </motion.button>
-      </form>
-    </motion.div>
+          {status.type === "success" && <CheckCircle className="w-4 h-4" />}
+          {status.type === "error" && <AlertCircle className="w-4 h-4" />}
+          {status.type === "loading" && <Loader2 className="w-4 h-4 animate-spin" />}
+          <span>{status.message}</span>
+        </div>
+      )}
+
+      <button
+        type="submit"
+        disabled={status.type === "loading"}
+        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-accent-foreground text-sm font-medium hover:bg-accent/90 active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150"
+      >
+        {status.type === "loading" ? (
+          <Loader2 className="w-4 h-4 animate-spin" />
+        ) : (
+          <Send className="w-4 h-4" />
+        )}
+        {status.type === "loading" ? t.sending : t.send}
+      </button>
+    </form>
   );
 };
 

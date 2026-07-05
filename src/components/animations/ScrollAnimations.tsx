@@ -1,34 +1,30 @@
 import React from "react";
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 interface ScrollAnimationProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right";
 }
 
+/** Subtle fade-up reveal when the element enters the viewport. */
 const ScrollAnimations: React.FC<ScrollAnimationProps> = ({
   children,
   className = "",
   delay = 0,
-  direction = "up",
 }) => {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   const variants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
-      x: direction === "left" ? 30 : direction === "right" ? -30 : 0,
-    },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        delay,
-        ease: [0.25, 0.25, 0.25, 0.75],
-      },
+      transition: { duration: 0.5, delay, ease: [0.25, 0.25, 0.25, 0.75] },
     },
   };
 
@@ -36,7 +32,7 @@ const ScrollAnimations: React.FC<ScrollAnimationProps> = ({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={variants}
       className={className}
     >
