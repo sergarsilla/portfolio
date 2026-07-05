@@ -1,24 +1,20 @@
-// Simple service worker for caching
-const CACHE_NAME = 'sergarsilla-portfolio-v2';
-const urlsToCache = [
-  '/',
-  '/manifest.json',
-  '/favicon.svg'
-];
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-  );
+// Self-destructing service worker.
+// A previous version cached index.html with a cache-first strategy and no
+// update path, so after each deploy returning visitors got stale HTML that
+// referenced purged hashed assets (blank page). This version wipes every
+// cache, unregisters itself and reloads open clients.
+self.addEventListener('install', () => {
+  self.skipWaiting();
 });
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((key) => caches.delete(key)));
+      await self.registration.unregister();
+      const clients = await self.clients.matchAll({ type: 'window' });
+      clients.forEach((client) => client.navigate(client.url));
+    })()
   );
 });
