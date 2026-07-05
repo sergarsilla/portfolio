@@ -1,115 +1,75 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, MessageCircle } from 'lucide-react';
-import { Language } from '../hooks/useLanguage';
-import { getTranslation } from '../utils/translations';
-import ScrollAnimations from './animations/ScrollAnimations';
-import ContactForm from './ContactForm';
+import { Github, Linkedin, Mail } from "lucide-react";
+import { Language } from "../hooks/useLanguage";
+import { getTranslation } from "../utils/translations";
+import ScrollAnimations from "./animations/ScrollAnimations";
+import ContactForm from "./ContactForm";
 
 interface ContactSectionProps {
   language: Language;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ language }) => {
+const ContactSection = ({ language }: ContactSectionProps) => {
   const t = getTranslation(language);
 
-  const contactLinks = [
+  const channels = [
     {
-      name: 'Email',
-      url: 'mailto:sergarsilla@gmail.com',
       icon: Mail,
-      color: 'text-red-500',
-      hoverColor: 'hover:text-red-600'
+      label: t.contact.email,
+      value: "sergarsilla@gmail.com",
+      href: "mailto:sergarsilla@gmail.com",
     },
     {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/sergarsilla',
       icon: Linkedin,
-      color: 'text-blue-500',
-      hoverColor: 'hover:text-blue-600'
+      label: t.contact.linkedin,
+      value: "linkedin.com/in/sergarsilla",
+      href: "https://linkedin.com/in/sergarsilla",
     },
     {
-      name: 'GitHub',
-      url: 'https://github.com/sergarsilla',
       icon: Github,
-      color: 'text-gray-700 dark:text-gray-300',
-      hoverColor: 'hover:text-gray-900 dark:hover:text-white'
-    }
+      label: t.contact.github,
+      value: "github.com/sergarsilla",
+      href: "https://github.com/sergarsilla",
+    },
   ];
 
   return (
-    <section id="contact" className="section-spacing bg-gradient-to-br from-secondary/30 to-secondary/10 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
-      </div>
+    <div className="container-custom">
+      <ScrollAnimations>
+        <h2 className="text-2xl md:text-3xl text-foreground">{t.contact.title}</h2>
+        <p className="mt-2 text-muted-foreground max-w-2xl">{t.contact.description}</p>
+      </ScrollAnimations>
 
-      <div className="container-custom relative">
+      <div className="mt-10 grid gap-12 lg:grid-cols-[1fr,1.4fr]">
         <ScrollAnimations>
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-6">
-              <MessageCircle className="w-8 h-8 text-accent mr-3" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                {t.contact.title}
-              </h2>
-            </div>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t.contact.description}
-            </p>
-          </div>
-
-          {/* Contact Form */}
-          <div className="mb-12">
-            <ContactForm language={language} />
-          </div>
-
-          {/* Alternative contact methods */}
-          <div className="text-center mb-8">
-            <p className="text-muted-foreground mb-6">
-              {language === 'es' ? 'O conéctate directamente:' : 'Or connect directly:'}
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 pb-8">
-            {contactLinks.map((link, index) => (
-              <ScrollAnimations
-                key={link.name}
-                delay={index * 0.1}
-                direction="up"
-              >
-                <motion.a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-xl hover:bg-accent hover:text-accent-foreground transition-all duration-300 group"
-                  whileHover={{
-                    scale: 1.05,
-                    y: -2
-                  }}
-                  whileTap={{ scale: 0.95 }}
+          <ul className="space-y-2">
+            {channels.map((channel) => (
+              <li key={channel.href}>
+                <a
+                  href={channel.href}
+                  target={channel.href.startsWith("http") ? "_blank" : undefined}
+                  rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="group flex items-center gap-4 rounded-lg border border-transparent px-3 py-3 -mx-3 hover:border-border hover:bg-secondary/50 transition-colors duration-150"
                 >
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <link.icon className="w-5 h-5" />
-                  </motion.div>
-                  <span className="font-medium">
-                    {link.name === 'Email'
-                      ? t.contact.email
-                      : link.name === 'LinkedIn'
-                        ? t.contact.linkedin
-                        : t.contact.github
-                    }
+                  <channel.icon className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors duration-150" />
+                  <span className="flex-1">
+                    <span className="block text-sm font-medium text-foreground">
+                      {channel.label}
+                    </span>
+                    <span className="block font-mono text-sm text-muted-foreground">
+                      {channel.value}
+                    </span>
                   </span>
-                </motion.a>
-              </ScrollAnimations>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
+        </ScrollAnimations>
+
+        <ScrollAnimations delay={0.06}>
+          <ContactForm language={language} />
         </ScrollAnimations>
       </div>
-    </section>
+    </div>
   );
 };
 
