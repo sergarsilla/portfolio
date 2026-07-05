@@ -1,309 +1,194 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { Language } from "../hooks/useLanguage";
-import { getTranslation } from "../utils/translations";
-import {
-  getAnimationConfig,
-  prefersReducedMotion,
-} from "../utils/animationConfig";
 
 interface HeroSectionProps {
   language: Language;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
-  const t = getTranslation(language);
-  const animConfig = getAnimationConfig();
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [displayedText, setDisplayedText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+/** Terminal session shown as the hero visual. Kept language-neutral on purpose. */
+type SessionLine = { kind: "cmd" | "out"; text: string };
 
-  const fullText = "Sergio García Mansilla";
+const SESSION: SessionLine[] = [
+  { kind: "cmd", text: "whoami" },
+  { kind: "out", text: "sergio.garcia" },
+  { kind: "cmd", text: "cat role.txt" },
+  { kind: "out", text: "cybersecurity & systems @ brooktec" },
+  { kind: "out", text: "siem / hardening / cloud / iso 27001" },
+  { kind: "cmd", text: "ls ~/projects" },
+  { kind: "out", text: "wazuh-anomaly-detector  wazuh-llm-triage" },
+];
 
-  useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
+const TYPE_MS = 38;
+const OUT_MS = 220;
 
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleChange = () => setReducedMotion(mediaQuery.matches);
+const copy = {
+  es: {
+    role: "Técnico en Ingeniería de Ciberseguridad y Sistemas en Brooktec",
+    description:
+      "Ingeniero Informático por la UPM y Máster en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva (EIP).",
+    primaryCta: "Ver proyectos",
+    secondaryCta: "Descargar CV",
+    terminalHint: "Abrir la terminal interactiva",
+  },
+  en: {
+    role: "Cybersecurity and Systems Engineering Technician at Brooktec",
+    description:
+      "Computer Engineer (UPM) with a Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security (EIP).",
+    primaryCta: "View projects",
+    secondaryCta: "Download CV",
+    terminalHint: "Open the interactive terminal",
+  },
+};
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+const HeroSection = ({ language }: HeroSectionProps) => {
+  const t = copy[language];
+  const reducedMotion = useReducedMotion();
+  // Number of session lines fully shown; chars typed of the current cmd line
+  const [progress, setProgress] = useState({ line: 0, char: 0 });
 
   useEffect(() => {
     if (reducedMotion) {
-      setDisplayedText(fullText);
+      setProgress({ line: SESSION.length, char: 0 });
       return;
     }
 
-    let index = 0;
-    const typingInterval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayedText(fullText.substring(0, index));
-        index++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    let line = 0;
+    let char = 0;
+    let timer: ReturnType<typeof setTimeout>;
 
-    return () => clearInterval(typingInterval);
+    const step = () => {
+      if (line >= SESSION.length) return;
+      const current = SESSION[line];
+      if (current.kind === "cmd" && char < current.text.length) {
+        char += 1;
+        setProgress({ line, char });
+        timer = setTimeout(step, TYPE_MS);
+      } else {
+        line += 1;
+        char = 0;
+        setProgress({ line, char });
+        timer = setTimeout(step, current.kind === "cmd" ? OUT_MS : OUT_MS / 2);
+      }
+    };
+
+    timer = setTimeout(step, 400);
+    return () => clearTimeout(timer);
   }, [reducedMotion]);
 
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 500);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: reducedMotion ? 1 : 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: reducedMotion ? 0 : animConfig.stagger.hero,
-        delayChildren: reducedMotion ? 0 : 0.2,
-      },
-    },
+  const downloadCV = async () => {
+    const url =
+      language === "es"
+        ? "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_Spanish.pdf"
+        : "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_English.pdf";
+    const fileName =
+      language === "es" ? "CV_SergioGarciaMansilla_es.pdf" : "CV_SergioGarciaMansilla_en.pdf";
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch {
+      window.open(url, "_blank");
+    }
   };
 
-  const itemVariants = {
-    hidden: {
-      opacity: reducedMotion ? 1 : 0,
-      y: reducedMotion ? 0 : 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: reducedMotion ? 0 : animConfig.durations.fadeIn,
-        ease: animConfig.easing.default,
-      },
-    },
+  const scrollToProjects = () => {
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const openTerminal = () => {
+    window.dispatchEvent(new CustomEvent("open-terminal"));
+  };
+
+  const done = progress.line >= SESSION.length;
 
   return (
-    <section className="min-h-[100dvh] relative overflow-x-hidden flex items-center bg-background py-20 md:py-0">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
-      
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent-secondary/5"></div>
+    <div className="min-h-[100dvh] flex items-center pt-14">
+      <div className="container-custom w-full py-16 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Intro */}
+          <div>
+            <p className="font-mono text-sm text-accent mb-4">$ whoami</p>
+            <h1 className="text-4xl md:text-5xl text-foreground">
+              Sergio García Mansilla
+            </h1>
+            <p className="mt-4 text-lg md:text-xl font-medium text-foreground/90">
+              {t.role}
+            </p>
+            <p className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
+              {t.description}
+            </p>
 
-      {/* Floating particles */}
-      {!reducedMotion && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-accent/30 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-      )}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                onClick={scrollToProjects}
+                className="px-5 py-2.5 rounded-lg bg-accent text-accent-foreground text-sm font-medium hover:bg-accent/90 active:translate-y-px transition-colors duration-150"
+              >
+                {t.primaryCta}
+              </button>
+              <button
+                onClick={downloadCV}
+                className="px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:border-accent/60 hover:text-accent active:translate-y-px transition-colors duration-150"
+              >
+                {t.secondaryCta}
+              </button>
+            </div>
+          </div>
 
-      <div className="container-custom relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center"
-        >
-          {/* Terminal-style header */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-block mb-8 terminal-window max-w-3xl mx-auto"
+          {/* Terminal session (click opens the real one) */}
+          <button
+            onClick={openTerminal}
+            title={t.terminalHint}
+            className="terminal-window w-full text-left cursor-pointer hover:border-accent/50 transition-colors duration-150"
           >
             <div className="terminal-header">
               <div className="terminal-dot bg-red-500"></div>
               <div className="terminal-dot bg-yellow-500"></div>
               <div className="terminal-dot bg-green-500"></div>
-              <span className="text-xs font-mono ml-4">sergarsilla@portfolio:~$</span>
+              <span className="text-xs font-mono ml-2 text-muted-foreground">
+                sergarsilla@portfolio:~$
+              </span>
             </div>
-            <div className="p-6 bg-card/50 backdrop-blur-sm">
-              <div className="font-mono text-left space-y-2">
-                <div className="text-muted-foreground">
-                  <span className="text-accent">$</span> whoami
-                </div>
-                <div className="text-2xl md:text-4xl font-bold text-foreground">
-                  {displayedText}
-                  {showCursor && displayedText.length < fullText.length && (
-                    <span className="text-accent">▊</span>
-                  )}
-                </div>
-              </div>
+            <div className="p-5 font-mono text-sm leading-7 min-h-[240px]">
+              {SESSION.slice(0, progress.line).map((line, i) =>
+                line.kind === "cmd" ? (
+                  <p key={i}>
+                    <span className="text-accent">$</span>{" "}
+                    <span className="text-foreground">{line.text}</span>
+                  </p>
+                ) : (
+                  <p key={i} className="text-muted-foreground">
+                    {line.text}
+                  </p>
+                ),
+              )}
+              {!done && SESSION[progress.line]?.kind === "cmd" && (
+                <p>
+                  <span className="text-accent">$</span>{" "}
+                  <span className="text-foreground">
+                    {SESSION[progress.line].text.slice(0, progress.char)}
+                  </span>
+                  <span className="cursor-blink text-accent">▊</span>
+                </p>
+              )}
+              {done && (
+                <p>
+                  <span className="text-accent">$</span>{" "}
+                  <span className="cursor-blink text-accent">▊</span>
+                </p>
+              )}
             </div>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8 space-y-2"
-          >
-            <div className="text-gradient-cyber">
-              {language === "es" ? "Ingeniero Informático" : "Computer Engineer"}
-            </div>
-            <div className="text-gradient-cyber">
-              {language === "es" ? "Ciberseguridad & Sistemas" : "Cybersecurity & Systems"}
-            </div>
-            <div className="text-gradient-cyber">
-              {language === "es" ? "Desarrollo de Software" : "Software Development"}
-            </div>
-          </motion.div>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12"
-          >
-            {language === "es"
-              ? "Ingeniero Informático por la UPM y Máster en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva por EIP International Business School. Técnico en Ciberseguridad y Sistemas en Brooktec: administración y securización de infraestructuras, seguridad defensiva (SIEM, hardening, cloud), cumplimiento ISO 27001 y una base sólida de desarrollo de software."
-              : "Computer Engineer from UPM with a Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security from EIP International Business School. Cybersecurity and Systems Technician at Brooktec: infrastructure administration and hardening, defensive security (SIEM, cloud), ISO 27001 compliance and a solid software development background."}
-          </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap"
-          >
-            <motion.button
-              onClick={() => {
-                const projectsSection = document.getElementById("projects");
-                projectsSection?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-xl hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl glow"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label={
-                language === "es"
-                  ? "Ir a la sección de proyectos"
-                  : "Go to projects section"
-              }
-            >
-              {language === "es" ? "🚀 Explorar Proyectos" : "🚀 Explore Projects"}
-            </motion.button>
-
-            <motion.button
-              onClick={() => {
-                const experienceSection = document.getElementById("experience");
-                experienceSection?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-8 py-4 border-2 border-accent text-accent font-semibold rounded-xl hover:bg-accent hover:text-accent-foreground transition-all duration-300 transform hover:scale-105"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {language === "es" ? "💼 Ver Experiencia" : "💼 View Experience"}
-            </motion.button>
-
-            <motion.button
-              onClick={async () => {
-                const url =
-                  language === "es"
-                    ? "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_Spanish.pdf"
-                    : "https://raw.githubusercontent.com/sergarsilla/sergarsilla/main/CV_English.pdf";
-                const fileName =
-                  language === "es"
-                    ? "CV_SergioGarciaMansilla_es.pdf"
-                    : "CV_SergioGarciaMansilla_en.pdf";
-
-                try {
-                  const response = await fetch(url);
-                  const blob = await response.blob();
-                  const blobUrl = window.URL.createObjectURL(blob);
-
-                  const link = document.createElement("a");
-                  link.href = blobUrl;
-                  link.download = fileName;
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-
-                  window.URL.revokeObjectURL(blobUrl);
-                } catch (error) {
-                  console.error("Error downloading CV:", error);
-                  window.open(url, "_blank");
-                }
-              }}
-              className="px-8 py-4 border-2 border-accent/50 text-accent/80 font-semibold rounded-xl hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-105"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {language === "es" ? "📄 Descargar CV" : "📄 Download CV"}
-            </motion.button>
-
-            <motion.button
-              onClick={() => {
-                // Trigger terminal with Ctrl+Shift+K
-                const event = new KeyboardEvent('keydown', {
-                  key: 'K',
-                  ctrlKey: true,
-                  shiftKey: true,
-                  bubbles: true
-                });
-                window.dispatchEvent(event);
-              }}
-              className="px-8 py-4 bg-gradient-to-r from-accent to-accent-secondary text-background font-semibold rounded-xl hover:opacity-90 transition-all duration-300 transform hover:scale-105 glow"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              title="Open hidden terminal"
-            >
-              {language === "es" ? "🎯 CTF Challenge" : "🎯 CTF Challenge"}
-            </motion.button>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 flex justify-center"
-          >
-            <motion.div
-              className="w-6 h-10 border-2 border-accent/50 rounded-full flex justify-center pt-2"
-              animate={{
-                y: [0, 10, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <motion.div
-                className="w-1.5 h-1.5 bg-accent rounded-full"
-                animate={{
-                  y: [0, 12, 0],
-                  opacity: [1, 0.3, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          </button>
+        </div>
       </div>
-
-      <style>{`
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}</style>
-    </section>
+    </div>
   );
 };
 
