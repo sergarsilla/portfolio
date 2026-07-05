@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
+import '@fontsource-variable/geist'
+import '@fontsource-variable/jetbrains-mono'
 import './index.css'
 
 // A legacy service worker cached stale HTML after deploys; make sure any
