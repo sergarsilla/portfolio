@@ -139,6 +139,43 @@ const STATIC_COMMANDS: Record<string, string[]> = {
     '',
   ],
   uname: ['PortfolioOS portfolio 2.0.0-terminal #1 SMP x86_64 GNU/Linux', ''],
+  pwd: ['/home/sergio/portfolio', ''],
+  'cat /etc/passwd': [
+    'root:x:0:0:root:/root:/bin/bash',
+    'sergio:x:1000:1000:Sergio García:/home/sergio:/bin/zsh',
+    'guest:x:1001:1001:you, apparently:/tmp:/bin/nologin',
+    '',
+    'Nice try. Credentials are hashed, salted and elsewhere.',
+    '',
+  ],
+  'ls -la': [
+    'total 42',
+    'drwxr-xr-x  sergio sergio  .',
+    'drwxr-xr-x  root   root    ..',
+    '-rw-------  sergio sergio  .secret',
+    '-rw-r--r--  sergio sergio  role.txt',
+    'drwxr-xr-x  sergio sergio  projects/',
+    '',
+  ],
+  'cat .secret': [
+    'curiosity: rewarded.',
+    'There is an old code from 1986. It still works on this page:',
+    '↑ ↑ ↓ ↓ ← → ← → B A',
+    '',
+  ],
+  coffee: [
+    'Brewing coffee...',
+    '',
+    '      ( (',
+    '       ) )',
+    '    ........',
+    '    |      |]',
+    '    \\      /',
+    '     `----´',
+    '',
+    'Error 418: I\'m a teapot (RFC 2324)',
+    '',
+  ],
   sl: [
     '      ====        ________ ',
     '  _D _|  |_______/        \\__I_I_____===__|_________|',
@@ -294,8 +331,33 @@ const HiddenTerminal = () => {
       return;
     }
 
+    // xkcd 149
+    if (/^make me a sandwich$/.test(lower)) {
+      print(cmd, ['What? Make it yourself.', '']);
+      return;
+    }
+    if (/^sudo\s+make me a sandwich$/.test(lower)) {
+      print(cmd, ['Okay.', '', '    🥪', '']);
+      return;
+    }
+
+    // fork bomb
+    if (lower.includes(':(){') || lower.includes(':|:&')) {
+      print(cmd, [
+        'Fork bomb detected and defused.',
+        'ulimit exists for a reason. So do incident reports.',
+        '',
+      ]);
+      return;
+    }
+
     if (lower.startsWith('sudo')) {
       print(cmd, ['sergarsilla is not in the sudoers file.', 'This incident will be reported.', '']);
+      return;
+    }
+
+    if (lower.startsWith('echo ')) {
+      print(cmd, [cmd.slice(5), '']);
       return;
     }
 
@@ -371,6 +433,18 @@ const HiddenTerminal = () => {
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const current = input.trimStart().toLowerCase();
+      if (!current) return;
+      const completable = [
+        ...Object.keys(STATIC_COMMANDS),
+        'help', 'clear', 'exit', 'matrix', 'decode ', 'cowsay ', 'sudo ',
+      ];
+      const match = completable.find((c) => c.startsWith(current) && c !== current);
+      if (match) setInput(match);
+      return;
+    }
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (cmdHistory.length === 0) return;
@@ -407,7 +481,7 @@ const HiddenTerminal = () => {
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.96, y: 12 }}
           transition={{ duration: 0.18 }}
-          className="w-full max-w-3xl h-[560px] terminal-window"
+          className="w-full max-w-3xl h-[min(560px,85dvh)] terminal-window"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="terminal-header">

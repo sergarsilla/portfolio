@@ -34,9 +34,8 @@ export default defineConfig(({ mode }) => ({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
-        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : []
+        // console is kept on purpose: the DevTools banner is an easter egg
+        drop_debugger: mode === 'production'
       },
       mangle: {
         safari10: true

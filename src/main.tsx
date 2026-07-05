@@ -20,6 +20,16 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// A hello for anyone curious enough to open DevTools
+console.log(
+  '%c>_ sergarsilla',
+  'color:#41c889;font-size:20px;font-weight:bold;font-family:monospace;',
+);
+console.log(
+  '%cCurious about the code? Good sign.\nThe interactive terminal is Ctrl+Shift+K (there is more inside than "help" admits).',
+  'color:#8a8a93;font-family:monospace;',
+);
+
 const container = document.getElementById("root");
 if (!container) throw new Error("Root element not found");
 
