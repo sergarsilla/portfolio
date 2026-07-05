@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface ScrollAnimationProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const ScrollAnimations: React.FC<ScrollAnimationProps> = ({
   delay = 0,
   direction = "up",
 }) => {
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
