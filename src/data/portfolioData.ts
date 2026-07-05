@@ -22,20 +22,21 @@ export const experiencesData: ExperienceWithTranslations[] = [
       en: 'January 2026 - Present'
     },
     description: {
-      es: 'Enfoque en la securización de infraestructuras y la detección proactiva de vulnerabilidades. Seguridad Ofensiva: Ejecución de pruebas de penetración Black Box y White Box sobre activos críticos, identificando vectores de ataque y reportando hallazgos técnicos para su remediación. Defensa y Hardening: Implementación de políticas de endurecimiento en entornos Linux y Mac, reduciendo la superficie de exposición de la infraestructura. Seguridad Cloud: Auditoría y validación de seguridad en entornos distribuidos de AWS, Azure y Google Cloud, asegurando la correcta configuración de instancias EC2 y servicios gestionados. Monitorización (SOC): Gestión activa de alertas mediante SIEM (Wazuh) y protección de capas de aplicación con WAF (Wordfence), garantizando una respuesta ágil ante incidentes de seguridad.',
-      en: 'Focus on infrastructure security and proactive vulnerability detection. Offensive Security: Execution of Black Box and White Box penetration tests on critical assets, identifying attack vectors and reporting technical findings for remediation. Defense and Hardening: Implementation of hardening policies in Linux and Mac environments, reducing infrastructure exposure surface. Cloud Security: Security audit and validation in distributed AWS, Azure and Google Cloud environments, ensuring proper configuration of EC2 instances and managed services. Monitoring (SOC): Active alert management through SIEM (Wazuh) and application layer protection with WAF (Wordfence), ensuring agile response to security incidents.'
+      es: 'Administración y securización de sistemas e infraestructuras, tanto internas como de clientes. Defensa y Hardening: implementación de políticas de endurecimiento en entornos Linux y Mac, reduciendo la superficie de exposición de la infraestructura. Monitorización (SOC): gestión activa de alertas mediante SIEM (Wazuh) y protección de capas de aplicación con WAF, garantizando una respuesta ágil ante incidentes de seguridad. Seguridad Cloud: auditoría y validación de seguridad en entornos distribuidos de AWS, Azure y Google Cloud. Cumplimiento: soporte a la implantación y mantenimiento del SGSI ISO 27001 (procedimientos, auditorías internas, RGPD). Seguridad Ofensiva: ejecución de pruebas de penetración Black Box y White Box sobre activos críticos, reportando hallazgos técnicos para su remediación. Automatización con IA: desarrollo de herramientas internas basadas en LLM para diagnóstico de infraestructura y operaciones de seguridad.',
+      en: 'Administration and securing of systems and infrastructure, both internal and client-facing. Defense and Hardening: implementation of hardening policies in Linux and Mac environments, reducing infrastructure exposure surface. Monitoring (SOC): active alert management through SIEM (Wazuh) and application-layer protection with WAF, ensuring agile response to security incidents. Cloud Security: security auditing and validation in distributed AWS, Azure and Google Cloud environments. Compliance: support to the implementation and maintenance of an ISO 27001 ISMS (procedures, internal audits, GDPR). Offensive Security: execution of Black Box and White Box penetration tests on critical assets, reporting technical findings for remediation. AI Automation: development of internal LLM-based tooling for infrastructure diagnostics and security operations.'
     },
     technologies: [
-      'Penetration Testing',
-      'Black Box Testing',
-      'White Box Testing',
+      'SIEM (Wazuh)',
       'Linux Hardening',
+      'Incident Response',
       'AWS Security',
       'Azure Security',
       'Google Cloud',
-      'SIEM (Wazuh)',
-      'WAF (Wordfence)',
+      'ISO 27001',
+      'Docker',
+      'WAF',
       'SOC',
+      'Penetration Testing',
       'DevSecOps'
     ],
     type: 'full-time'
@@ -71,8 +72,8 @@ export const experiencesData: ExperienceWithTranslations[] = [
       en: 'Mobile Application Developer'
     },
     period: {
-      es: 'Junio 2023 - Actualidad',
-      en: 'June 2023 - Present'
+      es: 'Enero 2023 - Actualidad',
+      en: 'January 2023 - Present'
     },
     description: {
       es: 'Gestión del ciclo de vida completo de proyectos de aplicaciones móviles para clientes, desde la toma de requisitos hasta el despliegue en Google Play Store y Apple App Store. Desarrollo de soluciones multiplataforma a medida utilizando React Native y TypeScript, integrando servicios backend con Firebase. Comunicación eficaz y habilidades de consultoría, traduciendo las necesidades del cliente en especificaciones técnicas y productos funcionales.',
@@ -139,6 +140,40 @@ interface ProjectWithTranslations {
 }
 
 const projectsData: ProjectWithTranslations[] = [
+  {
+    title: 'Wazuh Anomaly Detector',
+    description: {
+      es: 'Motor de detección de anomalías en tiempo real para el SIEM Wazuh, desarrollado como Trabajo Fin de Máster. Un autoencoder en PyTorch aprende el comportamiento normal de los equipos a partir de logs sanitizados localmente (ISO 27001/RGPD) y detecta desviaciones mediante un umbral dinámico por percentil, inyectando alertas explicables en Wazuh. Validado sobre infraestructura real: 0,1% de falsos positivos medidos, despliegue en Docker y 48 tests automatizados.',
+      en: 'Real-time anomaly detection engine for the Wazuh SIEM, developed as my Master\'s Thesis. A PyTorch autoencoder learns normal host behaviour from locally sanitized logs (ISO 27001/GDPR) and flags deviations using a dynamic percentile threshold, injecting explainable alerts back into Wazuh. Validated on real infrastructure: 0.1% measured false-positive rate, Docker deployment and 48 automated tests.'
+    },
+    technologies: [
+      'Python',
+      'PyTorch',
+      'Wazuh SIEM',
+      'Machine Learning',
+      'Docker',
+      'ISO 27001'
+    ],
+    category: 'cybersecurity',
+    githubUrl: 'https://github.com/sergarsilla/wazuh-anomaly-detector'
+  },
+  {
+    title: 'Wazuh LLM Triage',
+    description: {
+      es: 'Middleware de triaje automatizado de nivel 1 para SOC: intercepta alertas críticas de Wazuh, las enriquece con el contexto de la infraestructura mediante RAG (Qdrant) y las clasifica con un LLM 100% local (Ollama), reinyectando un veredicto estructurado con escalado en dos niveles y respuesta activa acotada. Sin GPU y sin enviar datos a terceros; resistente a inyección de prompt.',
+      en: 'Automated SOC level-1 triage middleware: it intercepts critical Wazuh alerts, enriches them with infrastructure context via RAG (Qdrant) and classifies them with a fully local LLM (Ollama), re-injecting a structured verdict with two-level escalation and bounded active response. No GPU required and no data sent to third parties; resistant to prompt injection.'
+    },
+    technologies: [
+      'Python',
+      'LLM (Ollama)',
+      'RAG',
+      'Qdrant',
+      'Wazuh SIEM',
+      'Docker'
+    ],
+    category: 'cybersecurity',
+    githubUrl: 'https://github.com/sergarsilla/wazuh-llm-triage'
+  },
   {
     title: 'IntelliCart - Smart Grocery List',
     description: {
@@ -284,6 +319,7 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
       'Android',
       'Jetpack Compose',
       'Flutter',
+      'PyTorch',
       'CUDA',
       'OpenMP'
     ],
@@ -300,6 +336,7 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
       'AWS',
       'Azure',
       'Google Cloud',
+      'Docker',
       'CI/CD',
       'DevSecOps',
       'Git',
@@ -318,8 +355,10 @@ const skillCategoriesData: SkillCategoryWithTranslations[] = [
       'Linux Hardening',
       'Network Security',
       'SIEM (Wazuh)',
-      'WAF (Wordfence)',
+      'WAF',
       'SOC',
+      'Incident Response',
+      'ISO 27001',
       'Vulnerability Assessment',
       'Burp Suite',
       'Nmap',

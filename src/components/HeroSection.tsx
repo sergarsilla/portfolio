@@ -169,8 +169,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
             className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-12"
           >
             {language === "es"
-              ? "Ingeniero Informático por la UPM con experiencia profesional en desarrollo de software y ciberseguridad. Actualmente cursando el Máster Profesional en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva en EIP International Business School."
-              : "Computer Engineer from UPM with professional experience in software development and cybersecurity. Currently pursuing a Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security at EIP International Business School."}
+              ? "Ingeniero Informático por la UPM y Máster en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva por EIP International Business School. Técnico en Ciberseguridad y Sistemas en Brooktec: administración y securización de infraestructuras, seguridad defensiva (SIEM, hardening, cloud), cumplimiento ISO 27001 y una base sólida de desarrollo de software."
+              : "Computer Engineer from UPM with a Professional Master's in Cybersecurity Management, Ethical Hacking and Offensive Security from EIP International Business School. Cybersecurity and Systems Technician at Brooktec: infrastructure administration and hardening, defensive security (SIEM, cloud), ISO 27001 compliance and a solid software development background."}
           </motion.p>
 
           <motion.div
