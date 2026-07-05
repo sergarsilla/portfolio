@@ -4,69 +4,62 @@
 
 @layer base {
   :root {
-    /* Light theme - Professional & Clean */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 98%;
-    --card-foreground: 222 47% 11%;
+    /* Light theme: off-white neutrals, single terminal-green accent */
+    --background: 0 0% 99%;
+    --foreground: 240 6% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 222 47% 11%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 199 89% 48%;
+    --popover-foreground: 240 6% 12%;
+    --primary: 240 6% 12%;
+    --primary-foreground: 0 0% 99%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 12%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 40%;
+    --accent: 152 60% 30%;
     --accent-foreground: 0 0% 100%;
-    --accent-secondary: 266 83% 58%;
-    --accent-tertiary: 142 71% 45%;
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 199 89% 48%;
+    --border: 240 6% 90%;
+    --input: 240 6% 88%;
+    --ring: 152 60% 30%;
     --radius: 0.75rem;
-    --glow: 199 89% 48%;
   }
 
   .dark {
-    /* Dark theme - CyberDev Terminal */
-    --background: 229 84% 5%;
-    --foreground: 240 5% 90%;
-    --card: 229 84% 8%;
-    --card-foreground: 240 5% 90%;
-    --popover: 229 84% 5%;
-    --popover-foreground: 240 5% 90%;
-    --primary: 240 5% 90%;
-    --primary-foreground: 229 84% 5%;
-    --secondary: 229 84% 10%;
-    --secondary-foreground: 240 5% 90%;
-    --muted: 229 84% 10%;
-    --muted-foreground: 240 5% 64%;
-    --accent: 142 76% 36%;
-    --accent-foreground: 0 0% 100%;
-    --accent-secondary: 187 85% 35%;
-    --accent-tertiary: 266 83% 58%;
-    --destructive: 0 63% 31%;
+    /* Dark theme: near-black zinc, same green hue tuned for dark */
+    --background: 240 6% 5%;
+    --foreground: 240 6% 88%;
+    --card: 240 5% 7%;
+    --card-foreground: 240 6% 88%;
+    --popover: 240 5% 7%;
+    --popover-foreground: 240 6% 88%;
+    --primary: 240 6% 88%;
+    --primary-foreground: 240 6% 5%;
+    --secondary: 240 5% 11%;
+    --secondary-foreground: 240 6% 88%;
+    --muted: 240 5% 11%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 152 55% 52%;
+    --accent-foreground: 240 6% 6%;
+    --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 229 84% 15%;
-    --input: 229 84% 15%;
-    --ring: 142 76% 36%;
-    --glow: 142 76% 36%;
+    --border: 240 5% 14%;
+    --input: 240 5% 16%;
+    --ring: 152 55% 52%;
   }
-  
+
   .hacker-mode {
-    /* Matrix Mode - Easter Egg */
+    /* Matrix mode: deliberate full-theme easter egg (Konami / terminal) */
     --background: 0 0% 0%;
     --foreground: 142 100% 50%;
     --card: 0 0% 5%;
     --card-foreground: 142 100% 50%;
     --accent: 142 100% 50%;
-    --accent-secondary: 142 100% 40%;
-    --accent-tertiary: 142 100% 60%;
+    --accent-foreground: 0 0% 0%;
     --border: 142 100% 20%;
-    --glow: 142 100% 50%;
+    --muted-foreground: 142 60% 40%;
   }
 }
 
@@ -79,62 +72,34 @@
   html {
     scroll-behavior: smooth;
     @apply bg-background;
-    width: 100%;
-    min-height: 100vh;
-    font-display: swap;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      "Roboto", "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400;
+    @apply bg-background text-foreground font-sans antialiased;
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-display: swap;
   }
 
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-    font-display: swap;
+  h4 {
+    @apply font-semibold tracking-tight;
+    line-height: 1.15;
   }
 
-  /* Performance optimizations */
-  img, video {
-    max-width: 100%;
-    height: auto;
-    loading: lazy;
+  ::selection {
+    background: hsl(var(--accent) / 0.25);
   }
 
-  /* Improve font loading performance */
-  @font-face {
-    font-family: "Inter";
-    font-display: swap;
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
   }
 
-  /* Reduce layout shifts */
-  .font-mono {
-    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", "Consolas",
-      "Monaco", monospace;
-    font-display: swap;
-  }
-
-  /* Prevent layout shifts during loading */
-  .container-custom {
-    min-height: 1px; /* Prevent collapse */
-  }
-
-  /* Optimize animations for performance */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -145,149 +110,48 @@
       scroll-behavior: auto !important;
     }
   }
-
-  /* Improve button focus states for accessibility */
-  button:focus-visible {
-    outline: 2px solid hsl(var(--accent));
-    outline-offset: 2px;
-  }
 }
 
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-spacing {
-    @apply py-20 lg:py-24;
-    scroll-snap-align: start;
+    @apply py-20 lg:py-28;
   }
 
-  .scroll-container {
-    scroll-snap-type: y proximity;
-    overflow-y: auto;
-  }
-
-  .font-mono {
-    font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
-  }
-
-  .text-gradient {
-    background: linear-gradient(to right, hsl(var(--accent)), hsl(var(--accent-secondary)), hsl(var(--accent-tertiary)));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 3s ease infinite;
-  }
-  
-  .text-gradient-cyber {
-    background: linear-gradient(to right, hsl(var(--accent)), hsl(var(--accent-secondary)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px hsl(var(--glow) / 0.5));
-  }
-  
-  .glow {
-    box-shadow: 0 0 10px hsl(var(--glow) / 0.3),
-                0 0 20px hsl(var(--glow) / 0.2),
-                0 0 30px hsl(var(--glow) / 0.1);
-  }
-  
-  .glow-text {
-    filter: drop-shadow(0 0 10px hsl(var(--glow) / 0.5)) 
-            drop-shadow(0 0 20px hsl(var(--glow) / 0.3));
-  }
-  
   .terminal-window {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06),
-                0 0 0 1px hsl(var(--border));
+    box-shadow: 0 8px 30px -12px hsl(240 6% 2% / 0.35);
   }
-  
+
   .terminal-header {
     background: hsl(var(--secondary));
+    border-bottom: 1px solid hsl(var(--border));
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  
+
   .terminal-dot {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.7rem;
+    height: 0.7rem;
     border-radius: 9999px;
-  }
-  
-  .glitch {
-    position: relative;
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-  
-  .glitch:hover::before {
-    animation: glitch-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-    color: hsl(var(--accent));
-    z-index: -1;
-  }
-  
-  .glitch:hover::after {
-    animation: glitch-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
-    color: hsl(var(--accent-secondary));
-    z-index: -2;
-  }
-}
-
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes glitch-1 {
-  0%, 100% {
-    transform: translate(0);
-    opacity: 0;
-  }
-  20%, 80% {
-    transform: translate(-2px, 2px);
-    opacity: 0.75;
-  }
-}
-
-@keyframes glitch-2 {
-  0%, 100% {
-    transform: translate(0);
-    opacity: 0;
-  }
-  20%, 80% {
-    transform: translate(2px, -2px);
-    opacity: 0.75;
   }
 }
 
 @keyframes blink {
-  0%, 49% {
+  0%,
+  49% {
     opacity: 1;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 0;
   }
 }
@@ -296,29 +160,57 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Custom scrollbar */
+/* "sudo rm -rf /" easter egg: the page falls apart, the terminal survives */
+@media (prefers-reduced-motion: no-preference) {
+  .meltdown header,
+  .meltdown main,
+  .meltdown footer {
+    animation: page-fall 1.6s cubic-bezier(0.5, 0, 0.9, 0.4) forwards;
+  }
+
+  .meltdown main {
+    animation-delay: 0.15s;
+  }
+
+  .meltdown footer {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes page-fall {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  15% {
+    transform: rotate(-1.5deg) translateY(1vh);
+  }
+  100% {
+    transform: rotate(5deg) translateY(120vh);
+    opacity: 0.3;
+  }
+}
+
+/* Custom scrollbar: neutral and quiet */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
-  border-left: 1px solid hsl(var(--border));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--accent) / 0.5);
+  background: hsl(var(--border));
   border-radius: 5px;
   border: 2px solid hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent) / 0.8);
-  box-shadow: 0 0 10px hsl(var(--glow) / 0.5);
+  background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--accent) / 0.5) hsl(var(--background));
+  scrollbar-color: hsl(var(--border)) hsl(var(--background));
 }
