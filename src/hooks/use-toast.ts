@@ -1,3 +1,0 @@
-// Dead code stub (file deletion is blocked in this session).
-// Safe to delete: git rm src/hooks/use-toast.ts
-export {};
