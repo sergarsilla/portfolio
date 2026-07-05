@@ -3,7 +3,6 @@ import { Briefcase } from "lucide-react";
 import { Language } from "../hooks/useLanguage";
 import { getTranslation } from "../utils/translations";
 import { getExperiences } from "../data/portfolioData";
-import HoverEffects from "./animations/HoverEffects";
 import ScrollAnimations from "./animations/ScrollAnimations";
 
 interface ExperienceSectionProps {
@@ -47,7 +46,7 @@ const ExperienceSection = ({ language }: ExperienceSectionProps) => {
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <ScrollAnimations
-                key={exp.company}
+                key={`${exp.company}-${exp.period}`}
                 delay={index * 0.1}
                 direction="up"
               >
