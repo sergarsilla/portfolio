@@ -1,3 +1,3 @@
-import { useToast, toast } from "@/hooks/use-toast";
-
-export { useToast, toast };
+// Dead code stub (file deletion is blocked in this session).
+// Safe to delete: git rm src/components/ui/use-toast.ts
+export {};

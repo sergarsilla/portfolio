@@ -4,8 +4,6 @@ import { Language } from "../hooks/useLanguage";
 import { getTranslation } from "../utils/translations";
 import { getSkillCategories } from "../data/portfolioData";
 import ScrollAnimations from "./animations/ScrollAnimations";
-import HoverEffects from "./animations/HoverEffects";
-import FloatingParticles from "./animations/FloatingParticles";
 
 interface SkillsSectionProps {
   language: Language;

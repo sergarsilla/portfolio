@@ -14,13 +14,9 @@ export const useLanguage = () => {
       console.warn('LocalStorage access denied or failed:', error);
     }
 
-    // Check browser language
+    // First visit: follow the browser language
     const browserLanguage = navigator.language.toLowerCase();
-    if (browserLanguage.startsWith('es')) {
-      return 'es';
-    }
-
-    return 'es'; // Default to Spanish
+    return browserLanguage.startsWith('es') ? 'es' : 'en';
   });
 
   useEffect(() => {
