@@ -3,15 +3,17 @@ import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
 
-// Register service worker for caching
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+// A legacy service worker cached stale HTML after deploys; make sure any
+// existing registration is removed. /sw.js is now a self-destructing worker
+// that cleans up clients that still have the old one installed.
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
+    navigator.serviceWorker.getRegistrations()
+      .then((registrations) => {
+        registrations.forEach((registration) => registration.unregister());
       })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+      .catch(() => {
+        // Nothing to clean up.
       });
   });
 }
