@@ -43,9 +43,9 @@ export interface TranslationContent {
 export const translations: Record<Language, TranslationContent> = {
   es: {
     hero: {
-      title: 'Ingeniero Informático | Ciberseguridad & Desarrollo de Software',
-      subtitle: 'Ingeniero Informático / Técnico en Ciberseguridad',
-      description: 'Ingeniero Informático por la Universidad Politécnica de Madrid con experiencia profesional en desarrollo de software y ciberseguridad. Actualmente cursando el Máster Profesional en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva en EIP International Business School. Especializado en seguridad ofensiva, hardening de sistemas y desarrollo de aplicaciones móviles.'
+      title: 'Ingeniero Informático | Ciberseguridad, Sistemas & Desarrollo de Software',
+      subtitle: 'Ingeniero Informático / Técnico en Ciberseguridad y Sistemas',
+      description: 'Ingeniero Informático por la Universidad Politécnica de Madrid y Máster en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva por EIP International Business School. Técnico en Ciberseguridad y Sistemas en Brooktec: administración y securización de infraestructuras, seguridad defensiva (SIEM, hardening, cloud), cumplimiento ISO 27001 y una base sólida de desarrollo de software.'
     },
     navigation: {
       experience: 'Experiencia',
@@ -82,9 +82,9 @@ export const translations: Record<Language, TranslationContent> = {
   },
   en: {
     hero: {
-      title: 'Computer Engineer | Cybersecurity & Software Development',
-      subtitle: 'Computer Engineer / Cybersecurity Technician',
-      description: 'Computer Engineer from Universidad Politécnica de Madrid with professional experience in software development and cybersecurity. Currently pursuing a Professional Master\'s in Cybersecurity Management, Ethical Hacking and Offensive Security at EIP International Business School. Specialized in offensive security, system hardening and mobile application development.'
+      title: 'Computer Engineer | Cybersecurity, Systems & Software Development',
+      subtitle: 'Computer Engineer / Cybersecurity and Systems Technician',
+      description: 'Computer Engineer from Universidad Politécnica de Madrid with a Professional Master\'s in Cybersecurity Management, Ethical Hacking and Offensive Security from EIP International Business School. Cybersecurity and Systems Technician at Brooktec: infrastructure administration and hardening, defensive security (SIEM, cloud), ISO 27001 compliance and a solid software development background.'
     },
     navigation: {
       experience: 'Experience',
